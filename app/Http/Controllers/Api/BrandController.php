@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,7 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::all();
-        return response()->json([
-            'status' => true,
-            'data'   => $brands,
-        ]);
+        return BrandResource::collection($brands);
     }
 
     public function store(Request $request)
@@ -27,7 +25,7 @@ class BrandController extends Controller
         return response()->json([
             'status'  => true,
             'message' => 'برند با موفقیت ایجاد شد',
-            'data'    => $brand,
+            'data'    => new BrandResource($brand),
         ], 201);
     }
 
@@ -35,7 +33,7 @@ class BrandController extends Controller
     {
         return response()->json([
             'status' => true,
-            'data'   => $id,
+            'data'   => new BrandResource($id),
         ]);
     }
 
@@ -50,7 +48,7 @@ class BrandController extends Controller
         return response()->json([
             'status'  => true,
             'message' => 'برند با موفقیت ویرایش شد',
-            'data'    => $id,
+            'data'    => new BrandResource($id),
         ]);
     }
 

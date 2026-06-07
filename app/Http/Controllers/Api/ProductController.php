@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with(['category', 'brand'])->get();
-        return response()->json([
-            'status' => true,
-            'data'   => $products,
-        ]);
+        return ProductResource::collection($products);
     }
 
     public function store(Request $request)
@@ -45,7 +43,7 @@ class ProductController extends Controller
         return response()->json([
             'status'  => true,
             'message' => 'محصول با موفقیت ایجاد شد',
-            'data'    => $product->load(['category', 'brand']),
+            'data'    => new ProductResource($product->load(['category', 'brand'])),
         ], 201);
     }
 
@@ -53,7 +51,7 @@ class ProductController extends Controller
     {
         return response()->json([
             'status' => true,
-            'data'   => $id->load(['category', 'brand']),
+            'data'   => new ProductResource($id->load(['category', 'brand'])),
         ]);
     }
 
@@ -76,7 +74,7 @@ class ProductController extends Controller
         return response()->json([
             'status'  => true,
             'message' => 'محصول با موفقیت ویرایش شد',
-            'data'    => $id->load(['category', 'brand']),
+            'data'    => new ProductResource($id->load(['category', 'brand'])),
         ]);
     }
 
