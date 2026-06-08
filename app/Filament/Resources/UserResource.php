@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Hash;
 class UserResource extends Resource
 {
     protected static ?string $model           = User::class;
-    protected static ?string $navigationIcon  = 'heroicon-o-users';
-    protected static ?string $navigationLabel = 'کاربران';
-    protected static ?string $modelLabel      = 'کاربر';
+    protected static ?string $navigationIcon  = 'heroicon-o-user';
+    protected static ?string $navigationLabel = 'ادمین ها ';
+    protected static ?string $modelLabel      = 'ادمین';
     protected static ?int $navigationSort     = 4;
 
     public static function form(Form $form): Form

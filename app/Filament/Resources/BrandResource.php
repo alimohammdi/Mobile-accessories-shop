@@ -28,7 +28,13 @@ class BrandResource extends Resource
                 Forms\Components\FileUpload::make('logo')
                     ->label('لوگو')
                     ->image()
-                    ->nullable(),
+                    ->disk('public')
+                    ->directory('brands')
+                    ->nullable()
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('1:1')
+                    ->imageResizeTargetWidth('200')
+                    ->imageResizeTargetHeight('200'),
             ]);
     }
 
@@ -37,7 +43,9 @@ class BrandResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('logo')
-                    ->label('لوگو'),
+                    ->label('لوگو')
+                    ->width(65)
+                    ->height(65),
                 Tables\Columns\TextColumn::make('name')
                     ->label('نام')
                     ->searchable(),

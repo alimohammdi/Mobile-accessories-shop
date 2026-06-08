@@ -3,6 +3,7 @@ namespace App\Filament\Widgets;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
@@ -13,6 +14,12 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
+
+            Stat::make('کاربران', Customer::count())
+                ->description('تعداد کاربران ثبت نام شده')
+                ->descriptionIcon('heroicon-o-users')
+                ->color('info'),
+
             Stat::make('کل محصولات', Product::count())
                 ->description('تعداد کل محصولات')
                 ->descriptionIcon('heroicon-o-shopping-bag')
@@ -33,9 +40,9 @@ class StatsOverview extends BaseWidget
                 ->descriptionIcon('heroicon-o-building-storefront')
                 ->color('danger'),
 
-            Stat::make('کاربران', User::count())
-                ->description('تعداد کاربران ثبت نام شده')
-                ->descriptionIcon('heroicon-o-users')
+            Stat::make('ادمین ها ', User::count())
+                ->description('تعداد ادمین ها   ')
+                ->descriptionIcon('heroicon-o-user')
                 ->color('info'),
 
             Stat::make('موجودی کل', Product::sum('stock') . ' عدد')

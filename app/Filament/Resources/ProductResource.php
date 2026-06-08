@@ -27,7 +27,7 @@ class ProductResource extends Resource
                             ->label('نام محصول')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('sku')
+                        Forms\Components\TextInput::make('uni_code')
                             ->label('کد محصول')
                             ->required()
                             ->unique(ignoreRecord: true)
@@ -74,15 +74,33 @@ class ProductResource extends Resource
                         Forms\Components\FileUpload::make('image_1')
                             ->label('تصویر اول')
                             ->image()
-                            ->nullable(),
+                            ->nullable()
+                            ->disk('public')
+                            ->directory('products')
+                            ->imageResizeMode('cover')
+                            ->imageCropAspectRatio('1:1')
+                            ->imageResizeTargetWidth('200')
+                            ->imageResizeTargetHeight('200'),
                         Forms\Components\FileUpload::make('image_2')
                             ->label('تصویر دوم')
                             ->image()
-                            ->nullable(),
+                            ->nullable()
+                            ->disk('public')
+                            ->directory('products')
+                            ->imageResizeMode('cover')
+                            ->imageCropAspectRatio('1:1')
+                            ->imageResizeTargetWidth('200')
+                            ->imageResizeTargetHeight('200'),
                         Forms\Components\FileUpload::make('image_3')
                             ->label('تصویر سوم')
                             ->image()
-                            ->nullable(),
+                            ->nullable()
+                            ->disk('public')
+                            ->directory('products')
+                            ->imageResizeMode('cover')
+                            ->imageCropAspectRatio('1:1')
+                            ->imageResizeTargetWidth('200')
+                            ->imageResizeTargetHeight('200'),
                     ])->columns(3),
             ]);
     }
@@ -92,11 +110,13 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image_1')
-                    ->label('تصویر'),
+                    ->label('تصویر')
+                    ->width(65)
+                    ->height(65),
                 Tables\Columns\TextColumn::make('name')
                     ->label('نام محصول')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('sku')
+                Tables\Columns\TextColumn::make('uni_code')
                     ->label('کد محصول')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('category.name')
