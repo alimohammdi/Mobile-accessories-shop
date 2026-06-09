@@ -3,6 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -22,5 +23,9 @@ class Product extends Model
     public function colors()
     {
         return $this->belongsToMany(Color::class);
+    }
+    public function sizes(): BelongsToMany
+    {
+        return $this->belongsToMany(Size::class);
     }
 }

@@ -79,8 +79,8 @@ class ProductResource extends Resource
                             ->directory('products')
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('1:1')
-                            ->imageResizeTargetWidth('200')
-                            ->imageResizeTargetHeight('200'),
+                            ->imageResizeTargetWidth('250')
+                            ->imageResizeTargetHeight('250'),
                         Forms\Components\FileUpload::make('image_2')
                             ->label('تصویر دوم')
                             ->image()
@@ -89,8 +89,8 @@ class ProductResource extends Resource
                             ->directory('products')
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('1:1')
-                            ->imageResizeTargetWidth('200')
-                            ->imageResizeTargetHeight('200'),
+                            ->imageResizeTargetWidth('250')
+                            ->imageResizeTargetHeight('250'),
                         Forms\Components\FileUpload::make('image_3')
                             ->label('تصویر سوم')
                             ->image()
@@ -99,8 +99,8 @@ class ProductResource extends Resource
                             ->directory('products')
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('1:1')
-                            ->imageResizeTargetWidth('200')
-                            ->imageResizeTargetHeight('200'),
+                            ->imageResizeTargetWidth('250')
+                            ->imageResizeTargetHeight('250'),
                     ])->columns(3),
                 Forms\Components\Section::make('رنگ‌ها')
                     ->schema([
@@ -109,7 +109,17 @@ class ProductResource extends Resource
                             ->relationship('colors', 'name')
                             ->multiple()
                             ->preload()
-                            ->searchable(),
+                            ->searchable()->nullable(),
+                    ]),
+                Forms\Components\Section::make('سایزها')
+                    ->schema([
+                        Forms\Components\Select::make('sizes')
+                            ->label('سایزها')
+                            ->relationship('sizes', 'number')
+                            ->multiple()
+                            ->preload()
+                            ->searchable()
+                            ->nullable(),
                     ]),
 
             ]);
