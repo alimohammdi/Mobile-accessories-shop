@@ -102,6 +102,16 @@ class ProductResource extends Resource
                             ->imageResizeTargetWidth('200')
                             ->imageResizeTargetHeight('200'),
                     ])->columns(3),
+                Forms\Components\Section::make('رنگ‌ها')
+                    ->schema([
+                        Forms\Components\Select::make('colors')
+                            ->label('رنگ‌ها')
+                            ->relationship('colors', 'name')
+                            ->multiple()
+                            ->preload()
+                            ->searchable(),
+                    ]),
+
             ]);
     }
 
