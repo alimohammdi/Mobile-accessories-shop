@@ -42,8 +42,8 @@ class SizeResource extends Resource
             ])
             ->filters([])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()->label('ویرایش'),
+                Tables\Actions\DeleteAction::make()->label("حذف"),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
