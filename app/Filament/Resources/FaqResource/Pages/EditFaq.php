@@ -1,13 +1,13 @@
 <?php
-namespace App\Filament\Resources\OrderResource\Pages;
+namespace App\Filament\Resources\FaqResource\Pages;
 
-use App\Filament\Resources\OrderResource;
+use App\Filament\Resources\FaqResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditOrder extends EditRecord
+class EditFaq extends EditRecord
 {
-    protected static string $resource = OrderResource::class;
+    protected static string $resource = FaqResource::class;
 
     protected function getRedirectUrl(): string
     {
@@ -16,7 +16,7 @@ class EditOrder extends EditRecord
 
     protected function getSavedNotificationTitle(): ?string
     {
-        return 'سفارش با موفقیت ویرایش شد';
+        return 'پرسش با موفقیت ویرایش شد';
     }
 
     protected function getHeaderActions(): array

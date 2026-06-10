@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\ColorResource\Pages;
 
 use App\Filament\Resources\ColorResource;
@@ -9,11 +8,21 @@ use Filament\Resources\Pages\EditRecord;
 class EditColor extends EditRecord
 {
     protected static string $resource = ColorResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
+    protected function getSavedNotificationTitle(): ?string
+    {
+        return 'رنگ با موفقیت ویرایش شد';
+    }
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->label('حذف'),
         ];
     }
 }

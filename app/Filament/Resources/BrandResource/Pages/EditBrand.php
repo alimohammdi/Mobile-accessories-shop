@@ -10,10 +10,22 @@ class EditBrand extends EditRecord
 {
     protected static string $resource = BrandResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
+    protected function getSavedNotificationTitle(): ?string
+    {
+        return 'برند با موفقیت ویرایش شد';
+    }
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->label('حذف'),
         ];
     }
+
 }

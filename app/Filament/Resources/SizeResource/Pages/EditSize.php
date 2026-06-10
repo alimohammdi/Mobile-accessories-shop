@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\SizeResource\Pages;
 
 use App\Filament\Resources\SizeResource;
@@ -10,10 +9,21 @@ class EditSize extends EditRecord
 {
     protected static string $resource = SizeResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
+    protected function getSavedNotificationTitle(): ?string
+    {
+        return 'سایز /شماره با موفقیت ویرایش شد';
+    }
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->label('حذف'),
         ];
     }
 }
