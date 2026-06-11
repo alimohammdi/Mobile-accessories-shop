@@ -15,6 +15,8 @@ class CategoryResource extends Resource
     protected static ?string $navigationIcon  = 'heroicon-o-tag';
     protected static ?string $navigationLabel = 'دسته‌بندی‌ها';
     protected static ?string $modelLabel      = 'دسته‌بندی';
+     protected static ?string $pluralModelLabel = 'دسته‌بندی‌ها';
+
     protected static ?int $navigationSort     = 1;
 
     public static function form(Form $form): Form
@@ -38,6 +40,7 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
                     ->label('تصویر'),
@@ -52,6 +55,7 @@ class CategoryResource extends Resource
                     ->dateTime()
                     ->sortable(),
             ])
+
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make()->label('ویرایش'),

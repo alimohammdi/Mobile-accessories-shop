@@ -15,6 +15,8 @@ class BrandResource extends Resource
     protected static ?string $navigationIcon  = 'heroicon-o-building-storefront';
     protected static ?string $navigationLabel = 'برندها';
     protected static ?string $modelLabel      = 'برند';
+    protected static ?string $pluralModelLabel = 'برند ها';
+
     protected static ?int $navigationSort     = 2;
 
     public static function form(Form $form): Form
@@ -41,6 +43,7 @@ class BrandResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+         ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\ImageColumn::make('logo')
                     ->label('لوگو')
@@ -57,6 +60,7 @@ class BrandResource extends Resource
                     ->dateTime()
                     ->sortable(),
             ])
+
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make()->label('ویرایش'),

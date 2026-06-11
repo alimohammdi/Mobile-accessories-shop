@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
@@ -8,13 +9,15 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\BadgeColumn;
 
 class OrderResource extends Resource
 {
     protected static ?string $model           = Order::class;
-    protected static ?string $navigationIcon  = 'heroicon-o-shopping-cart';
+    protected static ?string $navigationIcon  = 'heroicon-o-clipboard-document-list';
     protected static ?string $navigationLabel = 'سفارشات';
     protected static ?string $modelLabel      = 'سفارش';
+    protected static ?string $pluralModelLabel = 'سفارشات';
     protected static ?int $navigationSort     = 5;
 
     public static function form(Form $form): Form
@@ -25,8 +28,9 @@ class OrderResource extends Resource
                     ->schema([
                         Forms\Components\Select::make('customer_id')
                             ->label('مشتری')
-                            ->relationship('customer', 'first_name')
-                            ->required(),
+                            ->relationship('customer', 'name')
+                            ->required()
+                            ->searchable(),
                         Forms\Components\Select::make('status')
                             ->label('وضعیت')
                             ->options([
@@ -38,15 +42,15 @@ class OrderResource extends Resource
                             ])
                             ->required(),
                         Forms\Components\TextInput::make('total_price')
-                            ->label('قیمت کل')
+                            ->label('قیمت کل (تومان)')
                             ->numeric()
                             ->required(),
                         Forms\Components\TextInput::make('discount')
-                            ->label('تخفیف')
+                            ->label('تخفیف (تومان)')
                             ->numeric()
                             ->default(0),
                         Forms\Components\TextInput::make('final_price')
-                            ->label('قیمت نهایی')
+                            ->label('قیمت نهایی (تومان)')
                             ->numeric()
                             ->required(),
                     ])->columns(2),
@@ -61,24 +65,27 @@ class OrderResource extends Resource
                             ->label('کد پستی')
                             ->required(),
                         Forms\Components\Textarea::make('notes')
-                            ->label('توضیحات')
+                            ->label('یادداشت')
                             ->nullable()
                             ->columnSpanFull(),
                     ])->columns(2),
 
-                Forms\Components\Section::make('اقلام سفارش')
+                Forms\Components\Section::make('آیتم‌های سفارش')
                     ->schema([
                         Forms\Components\Repeater::make('items')
-                            ->relationship()
+                            ->relationship('items')
                             ->schema([
                                 Forms\Components\Select::make('product_id')
                                     ->label('محصول')
                                     ->relationship('product', 'name')
-                                    ->required(),
+                                    ->required()
+                                    ->searchable()
+                                    ->columnSpan(2),
                                 Forms\Components\TextInput::make('quantity')
                                     ->label('تعداد')
                                     ->numeric()
-                                    ->required(),
+                                    ->required()
+                                    ->default(1),
                                 Forms\Components\TextInput::make('price')
                                     ->label('قیمت')
                                     ->numeric()
@@ -93,7 +100,9 @@ class OrderResource extends Resource
                                 Forms\Components\TextInput::make('size')
                                     ->label('سایز')
                                     ->nullable(),
-                            ])->columns(3),
+                            ])->columns(3)
+                            ->addActionLabel('افزودن محصول')
+                            ->columnSpanFull(),
                     ]),
             ]);
     }
@@ -101,15 +110,17 @@ class OrderResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+         ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('شماره سفارش')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('customer.first_name')
+                Tables\Columns\TextColumn::make('customer.name')
                     ->label('مشتری')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('final_price')
-                    ->label('قیمت نهایی')
+                    ->label('مبلغ نهایی')
                     ->money('IRR')
                     ->sortable(),
                 Tables\Columns\BadgeColumn::make('status')
@@ -121,15 +132,16 @@ class OrderResource extends Resource
                         'success' => 'delivered',
                         'danger'  => 'cancelled',
                     ])
-                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                    ->formatStateUsing(fn($state) => match($state) {
                         'pending'    => 'در انتظار',
                         'processing' => 'در حال پردازش',
                         'shipped'    => 'ارسال شده',
                         'delivered'  => 'تحویل داده شده',
                         'cancelled'  => 'لغو شده',
+                        default      => $state,
                     }),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('تاریخ سفارش')
+                    ->label('تاریخ ثبت')
                     ->dateTime()
                     ->sortable(),
             ])
@@ -143,16 +155,41 @@ class OrderResource extends Resource
                         'delivered'  => 'تحویل داده شده',
                         'cancelled'  => 'لغو شده',
                     ]),
+                Tables\Filters\Filter::make('created_at')
+                    ->label('امروز')
+                    ->query(fn($query) => $query->whereDate('created_at', today())),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->label('ویرایش'),
-                Tables\Actions\DeleteAction::make()->label("حذف"),
-            ])
+    Tables\Actions\Action::make('changeStatus')
+        ->label('تغییر وضعیت')
+        ->icon('heroicon-o-arrow-path')
+        ->form([
+            Forms\Components\Select::make('status')
+                ->label('وضعیت جدید')
+                ->options([
+                    'pending'    => 'در انتظار',
+                    'processing' => 'در حال پردازش',
+                    'shipped'    => 'ارسال شده',
+                    'delivered'  => 'تحویل داده شده',
+                    'cancelled'  => 'لغو شده',
+                ])
+                ->required(),
+        ])
+        ->action(function (Order $record, array $data): void {
+            $record->update(['status' => $data['status']]);
+        })
+        ->modalHeading('تغییر وضعیت سفارش')
+        ->modalSubmitActionLabel('ثبت تغییر')
+        ->modalCancelActionLabel('انصراف'),
+        Tables\Actions\EditAction::make()->label('ویرایش'),
+         Tables\Actions\DeleteAction::make()->label('حذف'),
+        ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

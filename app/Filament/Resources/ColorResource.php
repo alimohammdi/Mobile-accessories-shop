@@ -15,6 +15,8 @@ class ColorResource extends Resource
     protected static ?string $navigationIcon  = 'heroicon-o-swatch';
     protected static ?string $navigationLabel = 'رنگ‌ها';
     protected static ?string $modelLabel      = 'رنگ';
+    protected static ?string $pluralModelLabel = 'رنگ‌ها  ';
+
     protected static ?int $navigationSort     = 3;
 
     public static function form(Form $form): Form
@@ -34,6 +36,7 @@ class ColorResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+         ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\ColorColumn::make('hex_code')
                     ->label('رنگ'),

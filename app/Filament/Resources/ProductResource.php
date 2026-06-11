@@ -15,6 +15,8 @@ class ProductResource extends Resource
     protected static ?string $navigationIcon  = 'heroicon-o-shopping-bag';
     protected static ?string $navigationLabel = 'محصولات';
     protected static ?string $modelLabel      = 'محصول';
+   protected static ?string $pluralModelLabel = 'محصولات';
+
     protected static ?int $navigationSort     = 3;
 
     public static function form(Form $form): Form
@@ -63,10 +65,31 @@ class ProductResource extends Resource
 
                 Forms\Components\Section::make('توضیحات')
                     ->schema([
-                        Forms\Components\Textarea::make('description')
-                            ->label('توضیحات')
-                            ->nullable()
-                            ->columnSpanFull(),
+                       Forms\Components\Section::make('توضیحات')
+                       ->schema([
+        Forms\Components\Select::make('description_template')
+            ->label('انتخاب از قالب‌های آماده')
+            ->options(
+                \App\Models\DescriptionTemplate::where('is_active', true)
+                    ->pluck('title', 'id')
+            )
+            ->live()
+            ->afterStateUpdated(function ($state, Forms\Set $set) {
+                if ($state) {
+                    $template = \App\Models\DescriptionTemplate::find($state);
+                    if ($template) {
+                        $set('description', $template->content);
+                    }
+                }
+            })
+            ->placeholder('یک قالب انتخاب کنید...')
+            ->columnSpanFull(),
+        Forms\Components\Textarea::make('description')
+            ->label('توضیحات')
+            ->nullable()
+            ->rows(5)
+            ->columnSpanFull(),
+                                ]),
                     ]),
 
                 Forms\Components\Section::make('تصاویر')
@@ -128,6 +151,7 @@ class ProductResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\ImageColumn::make('image_1')
                     ->label('تصویر')

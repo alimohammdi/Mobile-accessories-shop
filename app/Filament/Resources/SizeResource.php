@@ -15,6 +15,8 @@ class SizeResource extends Resource
     protected static ?string $navigationIcon  = 'heroicon-o-hashtag';
     protected static ?string $navigationLabel = 'سایزها';
     protected static ?string $modelLabel      = 'سایز';
+    protected static ?string $pluralModelLabel = 'سایزها / شماره ها';
+
     protected static ?int $navigationSort     = 4;
 
     public static function form(Form $form): Form
@@ -31,6 +33,7 @@ class SizeResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+         ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('number')
                     ->label('شماره')

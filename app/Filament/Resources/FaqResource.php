@@ -15,6 +15,9 @@ class FaqResource extends Resource
     protected static ?string $navigationIcon  = 'heroicon-o-question-mark-circle';
     protected static ?string $navigationLabel = 'پرسش‌های متداول';
     protected static ?string $modelLabel      = 'پرسش';
+    protected static ?string $pluralModelLabel = 'پرسش های متداول';
+
+    
     protected static ?int $navigationSort     = 6;
 
     public static function form(Form $form): Form
@@ -48,6 +51,7 @@ class FaqResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+         ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('order')
                     ->label('ترتیب')

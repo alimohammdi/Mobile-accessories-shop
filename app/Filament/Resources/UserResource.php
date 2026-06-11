@@ -16,6 +16,8 @@ class UserResource extends Resource
     protected static ?string $navigationIcon  = 'heroicon-o-user';
     protected static ?string $navigationLabel = 'ادمین ها ';
     protected static ?string $modelLabel      = 'ادمین';
+     protected static ?string $pluralModelLabel = 'ادمین ها ';
+
     protected static ?int $navigationSort     = 4;
 
     public static function form(Form $form): Form
@@ -47,6 +49,7 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+         ->defaultSort('created_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('نام')
