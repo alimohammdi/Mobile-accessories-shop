@@ -17,7 +17,7 @@ class FaqResource extends Resource
     protected static ?string $modelLabel      = 'پرسش';
     protected static ?string $pluralModelLabel = 'پرسش های متداول';
 
-    
+
     protected static ?int $navigationSort     = 6;
 
     public static function form(Form $form): Form
@@ -68,7 +68,7 @@ class FaqResource extends Resource
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاریخ ایجاد')
-                    ->dateTime()
+                    ->formatStateUsing(fn($state) => $state ? \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($state))->format('Y/m/d H:i') : '-')
                     ->sortable(),
             ])
             ->defaultSort('order')

@@ -45,8 +45,8 @@ class ColorResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاریخ ایجاد')
-                    ->dateTime()
-                    ->sortable(),
+                   ->formatStateUsing(fn($state) => $state ? \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($state))->format('Y/m/d H:i') : '-')
+                   ->sortable(),
             ])
             ->filters([])
             ->actions([

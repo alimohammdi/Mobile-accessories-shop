@@ -75,13 +75,13 @@ class CommentResource extends Resource
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('تاریخ ثبت')
-                    ->dateTime()
+                    ->formatStateUsing(fn($state) => $state ? \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($state))->format('Y/m/d H:i') : '-')
                     ->sortable(),
                     Tables\Columns\IconColumn::make('is_admin_reply')
-    ->label('پاسخ ادمین')
-    ->boolean()
-    ->trueIcon('heroicon-o-shield-check')
-    ->falseIcon('heroicon-o-minus'),
+                    ->label('پاسخ ادمین')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-shield-check')
+                    ->falseIcon('heroicon-o-minus'),
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_approved')

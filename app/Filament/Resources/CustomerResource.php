@@ -90,12 +90,14 @@ class CustomerResource extends Resource
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->Label('تاریخ عضویت')
-                    ->dateTime()
+                  ->formatStateUsing(fn($state) => $state ? \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($state))->format('Y/m/d H:i') : '-')
+
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->Label('ویرایش شده')
-                    ->dateTime()
+                   ->formatStateUsing(fn($state) => $state ? \Morilog\Jalali\Jalalian::fromCarbon(\Carbon\Carbon::parse($state))->format('Y/m/d H:i') : '-')
+
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
