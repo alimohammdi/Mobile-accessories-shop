@@ -25,7 +25,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('adminstrator-login')
+            ->path('administrator-login')
             ->login()
             ->brandName(' Ghabos.ir')
             ->sidebarCollapsibleOnDesktop()
