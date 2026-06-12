@@ -39,4 +39,8 @@ class Customer extends Authenticatable
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+    public function comments()
+    {
+    return $this->hasMany(Comment::class);
+    }
 }

@@ -28,4 +28,14 @@ class Product extends Model
     {
         return $this->belongsToMany(Size::class);
     }
+
+       public function comments()
+    {
+         return $this->hasMany(Comment::class);
+    }
+
+        public function approvedComments()
+    {
+        return $this->hasMany(Comment::class)->where('is_approved', true);
+    }
 }
