@@ -34,6 +34,26 @@ class CategoryResource extends Resource
                     ->label('تصویر')
                     ->image()
                     ->nullable(),
+                    Forms\Components\Section::make('SEO')
+                    ->schema([
+                        Forms\Components\TextInput::make('slug')
+                            ->label('Slug (URL)')
+                            ->helperText('خودکار از نام دسته‌بندی ساخته میشه')
+                            ->nullable()
+                            ->unique(ignoreRecord: true),
+                        Forms\Components\TextInput::make('meta_title')
+                            ->label('عنوان SEO')
+                            ->nullable()
+                            ->maxLength(60)
+                            ->helperText('حداکثر ۶۰ کاراکتر'),
+                        Forms\Components\Textarea::make('meta_description')
+                            ->label('توضیحات SEO')
+                            ->nullable()
+                            ->maxLength(160)
+                            ->helperText('حداکثر ۱۶۰ کاراکتر')
+                             ->columnSpanFull(),
+                    ])->columns(2)
+                    ->collapsible(),
             ]);
     }
 

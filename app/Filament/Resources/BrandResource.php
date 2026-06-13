@@ -32,6 +32,11 @@ class BrandResource extends Resource
                     ->image()
                     ->disk('public')
                     ->directory('brands')
+                    ->afterStateUpdated(function ($state) {
+                     if ($state) {
+                               app(\App\Services\ImageOptimizationService::class)->optimize($state);
+                           }
+                       })
                     ->nullable()
                     ->imageResizeMode('cover')
                     ->imageCropAspectRatio('1:1')

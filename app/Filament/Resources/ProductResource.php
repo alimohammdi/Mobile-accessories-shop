@@ -100,6 +100,11 @@ class ProductResource extends Resource
                             ->nullable()
                             ->disk('public')
                             ->directory('products')
+                            ->afterStateUpdated(function ($state) {
+                                   if ($state) {
+                                       app(\App\Services\ImageOptimizationService::class)->optimize($state);
+                                   }
+                               })
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('1:1')
                             ->imageResizeTargetWidth('250')
@@ -110,6 +115,11 @@ class ProductResource extends Resource
                             ->nullable()
                             ->disk('public')
                             ->directory('products')
+                            ->afterStateUpdated(function ($state) {
+                             if ($state) {
+                                    app(\App\Services\ImageOptimizationService::class)->optimize($state);
+                                    }
+                             })
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('1:1')
                             ->imageResizeTargetWidth('250')
@@ -120,11 +130,36 @@ class ProductResource extends Resource
                             ->nullable()
                             ->disk('public')
                             ->directory('products')
+                            ->afterStateUpdated(function ($state) {
+                               if ($state) {
+                                        app(\App\Services\ImageOptimizationService::class)->optimize($state);
+                                    }
+                                })
                             ->imageResizeMode('cover')
                             ->imageCropAspectRatio('1:1')
                             ->imageResizeTargetWidth('250')
                             ->imageResizeTargetHeight('250'),
                     ])->columns(3),
+                    Forms\Components\Section::make('SEO')
+                   ->schema([
+                    Forms\Components\TextInput::make('slug')
+                        ->label('Slug (URL)')
+                        ->helperText('خودکار از نام محصول ساخته میشه')
+                        ->nullable()
+                        ->unique(ignoreRecord: true),
+                    Forms\Components\TextInput::make('meta_title')
+                        ->label('عنوان SEO')
+                        ->nullable()
+                        ->maxLength(60)
+                        ->helperText('حداکثر ۶۰ کاراکتر'),
+                    Forms\Components\Textarea::make('meta_description')
+                        ->label('توضیحات SEO')
+                        ->nullable()
+                        ->maxLength(160)
+                        ->helperText('حداکثر ۱۶۰ کاراکتر')
+                        ->columnSpanFull(),
+                ])->columns(2)
+                ->collapsible(),
                 Forms\Components\Section::make('رنگ‌ها')
                     ->schema([
                         Forms\Components\Select::make('colors')
