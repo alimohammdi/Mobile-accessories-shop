@@ -146,6 +146,7 @@ class OrderResource extends Resource
                     ->sortable(),
             ])
             ->filters([
+
                 Tables\Filters\SelectFilter::make('status')
                     ->label('وضعیت')
                     ->options([
@@ -160,6 +161,8 @@ class OrderResource extends Resource
                     ->query(fn($query) => $query->whereDate('created_at', today())),
             ])
             ->actions([
+                Tables\Actions\RestoreAction::make()->label('بازگردانی'),
+          Tables\Actions\ForceDeleteAction::make()->label('حذف دائم'),
     Tables\Actions\Action::make('changeStatus')
         ->label('تغییر وضعیت')
         ->icon('heroicon-o-arrow-path')

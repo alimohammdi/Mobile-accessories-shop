@@ -8,6 +8,9 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
@@ -223,6 +226,7 @@ class ProductResource extends Resource
                     ->sortable(),
             ])
             ->filters([
+
                 Tables\Filters\SelectFilter::make('category')
                     ->label('دسته‌بندی')
                     ->relationship('category', 'name'),
@@ -233,6 +237,8 @@ class ProductResource extends Resource
                     ->label('وضعیت'),
             ])
             ->actions([
+                Tables\Actions\RestoreAction::make()->label('بازگردانی'),
+                Tables\Actions\ForceDeleteAction::make()->label('حذف دائم'),
                 Tables\Actions\EditAction::make()->label('ویرایش'),
                 Tables\Actions\DeleteAction::make()->label("حذف"),
             ])
@@ -256,4 +262,13 @@ class ProductResource extends Resource
             'edit'   => Pages\EditProduct::route('/{record}/edit'),
         ];
     }
+
+   public static function getEloquentQuery(): Builder
+{
+    return parent::getEloquentQuery()
+        ->withoutGlobalScopes([
+            SoftDeletingScope::class,
+        ]);
+}
+
 }
