@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="لیست علاقه‌مندی‌های شما در فروشگاه غباس" />
+    <title>علاقه‌مندی‌ها | غباس</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="style_production_responsive.css" />
+    <style>
+      /* =====================================================
+         استایل‌های اختصاصی صفحه علاقه‌مندی‌ها
+      ===================================================== */
+
+      /* --- نوار breadcrumb --- */
+      .wl-breadcrumb {
+        background: var(--c-surface);
+        border-bottom: 1px solid var(--c-border);
+        padding: 12px 0;
+      }
+      .wl-breadcrumb__inner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--c-muted);
+      }
+      .wl-breadcrumb__inner a { color: var(--c-muted); transition: color .2s; }
+      .wl-breadcrumb__inner a:hover { color: var(--c-green); }
+      .wl-breadcrumb__inner i { font-size: 12px; }
+      .wl-breadcrumb__inner span { color: var(--c-ink); font-weight: 600; }
+
+      /* --- هدر صفحه --- */
+      .wl-hero {
+        background: linear-gradient(135deg, var(--c-surface) 0%, var(--c-bg) 100%);
+        border-bottom: 1px solid var(--c-border);
+        padding: 36px 0 28px;
+      }
+      .wl-hero__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .wl-hero__title {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .wl-hero__icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #ff5e7a 0%, #ff3355 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #fff;
+        box-shadow: 0 6px 20px rgba(255,51,85,.3);
+      }
+      .wl-hero__text h1 {
+        font-size: 22px;
+        font-weight: 900;
+        color: var(--c-ink);
+        margin-bottom: 4px;
+      }
+      .wl-hero__text p {
+        font-size: 13px;
+        color: var(--c-muted);
+      }
+      .wl-hero__text p span {
+        color: var(--c-green);
+        font-weight: 700;
+      }
+      .wl-hero__actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .wl-btn {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 18px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 700;
+        transition: all .2s;
+        cursor: pointer;
+      }
+      .wl-btn--green {
+        background: var(--c-green);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(46,143,230,.25);
+      }
+      .wl-btn--green:hover { opacity: .88; }
+      .wl-btn--outline {
+        background: var(--c-bg);
+        border: 1.5px solid var(--c-border);
+        color: var(--c-ink);
+      }
+      .wl-btn--outline:hover { border-color: var(--c-red); color: var(--c-red); }
+      .wl-btn--danger {
+        background: var(--c-bg);
+        border: 1.5px solid var(--c-border);
+        color: var(--c-muted);
+      }
+      .wl-btn--danger:hover { border-color: var(--c-red); color: var(--c-red); background: #fff5f5; }
+
+      /* --- فیلتر و مرتب‌سازی --- */
+      .wl-toolbar {
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--c-border);
+        margin-bottom: 28px;
+      }
+      .wl-filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .wl-filter-btn {
+        padding: 7px 16px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 700;
+        border: 1.5px solid var(--c-border);
+        background: var(--c-bg);
+        color: var(--c-muted);
+        transition: all .2s;
+        cursor: pointer;
+      }
+      .wl-filter-btn:hover,
+      .wl-filter-btn.active {
+        border-color: var(--c-green);
+        color: var(--c-green);
+        background: rgba(46,143,230,.06);
+      }
+      .wl-sort {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--c-muted);
+      }
+      .wl-sort select {
+        border: 1.5px solid var(--c-border);
+        background: var(--c-bg);
+        color: var(--c-ink);
+        border-radius: 10px;
+        padding: 7px 12px;
+        font-size: 13px;
+        font-family: inherit;
+        outline: none;
+        cursor: pointer;
+      }
+      .wl-sort select:focus { border-color: var(--c-green); }
+
+      /* --- گرید محصولات --- */
+      .wl-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+        padding-bottom: 60px;
+      }
+
+      /* --- کارت علاقه‌مندی --- */
+      .wl-card {
+        background: var(--c-surface);
+        border: 1px solid var(--c-border);
+        border-radius: var(--radius-card);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: box-shadow .25s, transform .25s;
+        position: relative;
+      }
+      .wl-card:hover {
+        box-shadow: 0 8px 30px rgba(22,37,42,.1);
+        transform: translateY(-3px);
+      }
+      body.dark .wl-card { background: #0F1A1D; }
+
+      /* تصویر */
+      .wl-card__media {
+        position: relative;
+        height: 200px;
+        background: var(--c-bg);
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .wl-card__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform .35s;
+        padding: 12px;
+      }
+      .wl-card:hover .wl-card__media img { transform: scale(1.06); }
+
+      /* بج تخفیف */
+      .wl-card__badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--c-red);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 3px 8px;
+        border-radius: 7px;
+        z-index: 2;
+      }
+
+      /* دکمه حذف از علاقه‌مندی */
+      .wl-card__remove {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255,255,255,.92);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: var(--c-red);
+        z-index: 2;
+        cursor: pointer;
+        transition: all .2s;
+        box-shadow: 0 2px 8px rgba(0,0,0,.1);
+      }
+      .wl-card__remove:hover {
+        background: var(--c-red);
+        color: #fff;
+        transform: scale(1.1);
+      }
+      body.dark .wl-card__remove { background: rgba(15,26,29,.92); }
+
+      /* بدنه کارت */
+      .wl-card__body {
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
+      }
+      .wl-card__cat {
+        font-size: 11px;
+        color: var(--c-muted);
+        font-weight: 600;
+      }
+      .wl-card__title {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--c-ink);
+        line-height: 1.55;
+        min-height: 40px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .wl-card__title:hover { color: var(--c-green); }
+
+      /* امتیاز */
+      .wl-card__rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #f59e0b;
+      }
+      .wl-card__rating span { color: var(--c-muted); font-weight: 400; }
+
+      /* موجودی */
+      .wl-card__stock {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 9px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        width: fit-content;
+      }
+      .wl-card__stock.in  { background: rgba(34,197,94,.1);  color: #16a34a; }
+      .wl-card__stock.low { background: rgba(245,158,11,.1); color: #d97706; }
+      .wl-card__stock.out { background: rgba(239,68,68,.1);  color: #dc2626; }
+
+      /* قیمت */
+      .wl-card__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 10px;
+        border-top: 1px solid var(--c-border);
+      }
+      .wl-card__prices { display: flex; flex-direction: column; gap: 2px; }
+      .wl-card__old {
+        font-size: 11px;
+        color: var(--c-muted);
+        text-decoration: line-through;
+      }
+      .wl-card__new {
+        font-size: 15px;
+        font-weight: 900;
+        color: var(--c-green);
+      }
+      .wl-card__new small { font-size: 10px; font-weight: 400; }
+
+      /* دکمه افزودن به سبد */
+      .wl-card__add {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: var(--c-green);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all .2s;
+        flex-shrink: 0;
+        box-shadow: 0 3px 10px rgba(46,143,230,.3);
+      }
+      .wl-card__add:hover { background: var(--c-blue); transform: scale(1.08); }
+      .wl-card__add:disabled {
+        background: var(--c-border);
+        color: var(--c-muted);
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+      }
+
+      /* انیمیشن حذف کارت */
+      .wl-card.removing {
+        animation: wlRemove .35s ease forwards;
+      }
+      @keyframes wlRemove {
+        to { opacity: 0; transform: scale(.88) translateY(12px); }
+      }
+
+      /* --- حالت خالی --- */
+      .wl-empty {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 80px 20px;
+        text-align: center;
+      }
+      .wl-empty__icon {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: var(--c-surface);
+        border: 2px dashed var(--c-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+        color: var(--c-muted);
+      }
+      .wl-empty h3 { font-size: 20px; font-weight: 800; color: var(--c-ink); }
+      .wl-empty p { font-size: 14px; color: var(--c-muted); max-width: 320px; line-height: 1.7; }
+
+      /* --- بخش «شاید دوست داشته باشید» --- */
+      .wl-suggest {
+        padding: 40px 0;
+        border-top: 1px solid var(--c-border);
+        margin-top: 20px;
+      }
+      .wl-suggest__title {
+        font-size: 19px;
+        font-weight: 900;
+        color: var(--c-ink);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .wl-suggest__title i { color: var(--c-green); }
+
+      /* --- toast اعلان --- */
+      .wl-toast {
+        position: fixed;
+        bottom: 90px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: var(--c-ink);
+        color: #fff;
+        padding: 12px 22px;
+        border-radius: 14px;
+        font-size: 13px;
+        font-weight: 600;
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transition: all .3s;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .wl-toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .wl-toast i { color: var(--c-green); font-size: 16px; }
+
+      /* --- ریسپانسیو --- */
+      @media (max-width: 768px) {
+        .wl-hero__inner { flex-direction: column; align-items: flex-start; }
+        .wl-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .wl-toolbar { flex-direction: column; align-items: flex-start; }
+        .wl-hero__text h1 { font-size: 18px; }
+      }
+      @media (max-width: 420px) {
+        .wl-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+        .wl-card__media { height: 150px; }
+        .wl-card__new { font-size: 13px; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ======= Topbar ======= -->
+    <div class="topbar">
+      🎉 جشنواره زمستانی: تا <strong>۵۰٪</strong> تخفیف روی تمام لوازم جانبی موبایل | کد تخفیف: <strong>WINTER2026</strong>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="header">
+      <div class="container header__row">
+        <a href="index.html" class="logo">
+          <span class="logo__mark">
+            <img src="assets/images/logo.png" alt="لوگو غباس"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'ti ti-bolt\'></i>';" />
+          </span>
+          <span>
+            <span class="logo__text">غباس</span>
+            <span class="logo__sub">GHABOS.IR</span>
+          </span>
+        </a>
+
+        <div class="search">
+          <input type="text" placeholder="جستجوی سراسری در محصولات، برندها و دسته‌بندی‌ها..." />
+          <button aria-label="جستجو"><i class="ti ti-search"></i></button>
+        </div>
+
+        <div class="header__actions">
+          <a href="login.html" class="auth-pill">
+            <i class="ti ti-user"></i>
+            <span>ورود | ثبت‌نام</span>
+          </a>
+          <button class="icon-btn" aria-label="حالت شب" id="themeToggle">
+            <i class="ti ti-moon"></i>
+          </button>
+          <a href="wishlist.html" class="icon-btn active" aria-label="علاقه‌مندی‌ها" style="color: var(--c-red); border-color: var(--c-red);">
+            <i class="ti ti-heart-filled"></i>
+            <span class="badge" id="wishlistBadge">۶</span>
+          </a>
+          <a href="cart.html" class="icon-btn cart" aria-label="سبد خرید">
+            <i class="ti ti-shopping-bag"></i>
+            <span class="badge">۲</span>
+          </a>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="container nav__row">
+          <button class="mobile-menu-toggle" aria-label="منو"><i class="ti ti-menu-2"></i></button>
+          <button class="nav__cats"><i class="ti ti-menu-2"></i> همه دسته‌بندی‌ها</button>
+          <a href="products.html">پرفروش‌ترین‌ها</a>
+          <a href="products.html?filter=hot" class="nav__hot">شگفت‌انگیزها</a>
+          <a href="products.html">تازه‌های فروشگاه</a>
+          <a href="blog.html">مجله غباس</a>
+          <a href="faq.html">پرسش‌های متداول</a>
+          <a href="about.html">درباره غباس</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ======= Breadcrumb ======= -->
+    <div class="wl-breadcrumb">
+      <div class="container wl-breadcrumb__inner">
+        <a href="index.html">خانه</a>
+        <i class="ti ti-chevron-left"></i>
+        <a href="profile.html">حساب کاربری</a>
+        <i class="ti ti-chevron-left"></i>
+        <span>علاقه‌مندی‌ها</span>
+      </div>
+    </div>
+
+    <!-- ======= Hero ======= -->
+    <section class="wl-hero">
+      <div class="container wl-hero__inner">
+        <div class="wl-hero__title">
+          <div class="wl-hero__icon"><i class="ti ti-heart-filled"></i></div>
+          <div class="wl-hero__text">
+            <h1>لیست علاقه‌مندی‌ها</h1>
+            <p><span id="itemCount">۶</span> محصول در لیست شما</p>
+          </div>
+        </div>
+        <div class="wl-hero__actions">
+          <button class="wl-btn wl-btn--green" id="addAllToCart">
+            <i class="ti ti-shopping-cart-plus"></i> افزودن همه به سبد
+          </button>
+          <button class="wl-btn wl-btn--danger" id="clearAll">
+            <i class="ti ti-trash"></i> حذف همه
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= محتوای اصلی ======= -->
+    <main class="container">
+      <!-- فیلتر و مرتب‌سازی -->
+      <div class="wl-toolbar">
+        <div class="wl-filters" id="filterBtns">
+          <button class="wl-filter-btn active" data-cat="all">همه</button>
+          <button class="wl-filter-btn" data-cat="هندزفری و اسپیکر">هندزفری</button>
+          <button class="wl-filter-btn" data-cat="قاب و محافظ">قاب و محافظ</button>
+          <button class="wl-filter-btn" data-cat="شارژر و کابل">شارژر و کابل</button>
+          <button class="wl-filter-btn" data-cat="ساعت هوشمند">ساعت هوشمند</button>
+          <button class="wl-filter-btn" data-cat="پاوربانک">پاوربانک</button>
+        </div>
+        <div class="wl-sort">
+          <i class="ti ti-arrows-sort"></i>
+          <select id="sortSelect">
+            <option value="default">مرتب‌سازی: پیش‌فرض</option>
+            <option value="price-asc">ارزان‌ترین</option>
+            <option value="price-desc">گران‌ترین</option>
+            <option value="name">نام محصول</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- گرید محصولات -->
+      <div class="wl-grid" id="wishGrid"></div>
+
+      <!-- بخش پیشنهادی -->
+      <div class="wl-suggest">
+        <h2 class="wl-suggest__title"><i class="ti ti-sparkles"></i> شاید دوست داشته باشید</h2>
+        <div class="wl-grid" id="suggestGrid"></div>
+      </div>
+    </main>
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer">
+      <div class="container footer__cols">
+        <div>
+          <a href="index.html" class="logo" style="display:inline-flex; margin-bottom:14px;">
+            <span class="logo__mark"><i class="ti ti-bolt"></i></span>
+            <span><span class="logo__text">غباس</span><span class="logo__sub">GHABOS.IR</span></span>
+          </a>
+          <p>غباس، مرجع تخصصی فروش گوشی موبایل و لوازم جانبی اصل با گارانتی معتبر و ارسال سریع به سراسر ایران.</p>
+          <div class="footer__socials">
+            <a href="#" aria-label="اینستاگرام"><i class="ti ti-brand-instagram"></i></a>
+            <a href="#" aria-label="تلگرام"><i class="ti ti-brand-telegram"></i></a>
+            <a href="#" aria-label="واتس‌اپ"><i class="ti ti-brand-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>دسترسی سریع</h4>
+          <ul>
+            <li><a href="index.html">صفحه اصلی</a></li>
+            <li><a href="products.html">محصولات</a></li>
+            <li><a href="about.html">درباره ما</a></li>
+            <li><a href="contact.html">تماس با ما</a></li>
+            <li><a href="blog.html">مجله غباس</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>حساب کاربری</h4>
+          <ul>
+            <li><a href="login.html">ورود / ثبت‌نام</a></li>
+            <li><a href="profile.html">پروفایل من</a></li>
+            <li><a href="orders.html">سفارش‌های من</a></li>
+            <li><a href="wishlist.html">علاقه‌مندی‌ها</a></li>
+            <li><a href="cart.html">سبد خرید</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>راهنما</h4>
+          <ul>
+            <li><a href="faq.html">پرسش‌های متداول</a></li>
+            <li><a href="#">شرایط و قوانین</a></li>
+            <li><a href="#">حریم خصوصی</a></li>
+            <li><a href="#">راهنمای خرید</a></li>
+            <li><a href="#">گارانتی و مرجوعی</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>ارتباط با ما</h4>
+          <ul>
+            <li><i class="ti ti-map-pin"></i> تهران، سعادت‌آباد</li>
+            <li><i class="ti ti-phone"></i> ۰۲۱-۱۲۳۴۵۶۷۸</li>
+            <li><i class="ti ti-mail"></i> support@ghabos.ir</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer__bottom">
+        <span>© ۱۴۰۵ غباس - تمامی حقوق محفوظ است.</span>
+        <div class="footer__payments">
+          <i class="ti ti-credit-card"></i>
+          <i class="ti ti-shield-check"></i>
+          <i class="ti ti-truck-delivery"></i>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile bottom nav -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav__row">
+        <a href="index.html"><i class="ti ti-home"></i> خانه</a>
+        <a href="categories.html"><i class="ti ti-category"></i> دسته‌ها</a>
+        <a href="cart.html" class="center"><i class="ti ti-shopping-bag"></i><span class="badge">۲</span></a>
+        <a href="wishlist.html" class="active" style="color: var(--c-red)"><i class="ti ti-heart-filled"></i> علاقه‌مندی</a>
+        <a href="profile.html"><i class="ti ti-user"></i> پروفایل</a>
+      </div>
+    </nav>
+
+    <!-- Toast اعلان -->
+    <div class="wl-toast" id="wlToast">
+      <i class="ti ti-check"></i>
+      <span id="wlToastMsg"></span>
+    </div>
+
+    <script>
+    /* ================================================================
+       wishlist.js — منطق صفحه علاقه‌مندی‌ها
+    ================================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* --- Dark mode --- */
+      if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+      document.getElementById('themeToggle')?.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      });
+
+      /* ----------------------------------------------------------------
+         داده‌های نمونه محصولات علاقه‌مندی
+         در پروژه واقعی از localStorage یا API سرور می‌آید
+      ---------------------------------------------------------------- */
+      let wishItems = [
+        {
+          id: 'p2', cat: 'هندزفری و اسپیکر', badge: null,
+          title: 'هندزفری بی‌سیم بیتس مدل Studio Buds',
+          price: 1850000, oldPrice: null, rating: 4.6, reviews: 89,
+          stock: 'in', stockLabel: 'موجود',
+          img: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?q=80&w=400&auto=format&fit=crop'
+        },
+        {
+          id: 'p4', cat: 'قاب و محافظ', badge: null,
+          title: 'قاب ژله‌ای ضدضربه مناسب آیفون ۱۵ پرو مکس',
+          price: 185000, oldPrice: null, rating: 4.5, reviews: 61,
+          stock: 'in', stockLabel: 'موجود',
+          img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=400&auto=format&fit=crop'
+        },
+        {
+          id: 'p1', cat: 'شارژر و کابل', badge: '۲۰٪',
+          title: 'کابل شارژ سریع تایپ-سی انکر مدل PowerLine',
+          price: 224000, oldPrice: 280000, rating: 4.8, reviews: 124,
+          stock: 'low', stockLabel: 'تنها ۳ عدد باقی',
+          img: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?q=80&w=400&auto=format&fit=crop'
+        },
+        {
+          id: 'p5', cat: 'ساعت هوشمند', badge: '۳۰٪',
+          title: 'ساعت هوشمند سامسونگ گلکسی واچ ۶',
+          price: 3150000, oldPrice: 4500000, rating: 4.7, reviews: 152,
+          stock: 'in', stockLabel: 'موجود',
+          img: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=400&auto=format&fit=crop'
+        },
+        {
+          id: 'p3', cat: 'پاوربانک', badge: '۱۵٪',
+          title: 'پاوربانک ۲۰۰۰۰ میلی‌آمپر شیائومی فست شارژ',
+          price: 1020000, oldPrice: 1200000, rating: 4.9, reviews: 203,
+          stock: 'out', stockLabel: 'ناموجود',
+          img: 'https://images.unsplash.com/photo-1609692814859-44520415e4b6?q=80&w=400&auto=format&fit=crop'
+        },
+        {
+          id: 'p6', cat: 'شارژر و کابل', badge: null,
+          title: 'شارژر دیواری ۶۵ واتی گان بیم فست شارژ GAN',
+          price: 420000, oldPrice: 560000, rating: 4.3, reviews: 44,
+          stock: 'in', stockLabel: 'موجود',
+          img: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?q=80&w=400&auto=format&fit=crop'
+        },
+      ];
+
+      /* داده‌های نمونه پیشنهادی */
+      const suggestItems = [
+        {
+          id: 's1', cat: 'گوشی موبایل', badge: null,
+          title: 'گوشی سامسونگ Galaxy A55 ظرفیت ۲۵۶ گیگابایت',
+          price: 14200000, oldPrice: 15800000, rating: 4.7, reviews: 318,
+          stock: 'in', stockLabel: 'موجود',
+          img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=400&auto=format&fit=crop'
+        },
+        {
+          id: 's2', cat: 'هندزفری و اسپیکر', badge: '۱۰٪',
+          title: 'ایرپاد پرو نسل دوم اپل AirPods Pro 2nd Gen',
+          price: 6300000, oldPrice: 7000000, rating: 4.9, reviews: 512,
+          stock: 'low', stockLabel: 'تنها ۵ عدد',
+          img: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?q=80&w=400&auto=format&fit=crop'
+        },
+        {
+          id: 's3', cat: 'ساعت هوشمند', badge: null,
+          title: 'ساعت هوشمند اپل واچ سری ۹ آلومینیوم',
+          price: 18500000, oldPrice: null, rating: 4.8, reviews: 275,
+          stock: 'in', stockLabel: 'موجود',
+          img: 'https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?q=80&w=400&auto=format&fit=crop'
+        },
+        {
+          id: 's4', cat: 'قاب و محافظ', badge: null,
+          title: 'گلس Privacy ضد جاسوسی مناسب آیفون ۱۵',
+          price: 95000, oldPrice: null, rating: 4.2, reviews: 88,
+          stock: 'in', stockLabel: 'موجود',
+          img: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=400&auto=format&fit=crop'
+        },
+      ];
+
+      /* ----------------------------------------------------------------
+         توابع کمکی
+      ---------------------------------------------------------------- */
+
+      /** تبدیل ارقام انگلیسی به فارسی */
+      const fa  = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+      /** فرمت قیمت با جداکننده هزارتایی فارسی */
+      const fmt = n => fa(n.toLocaleString('fa-IR'));
+
+      /** نمایش toast اعلان موقت */
+      function showToast(msg, icon = 'ti-check') {
+        const toast = document.getElementById('wlToast');
+        document.getElementById('wlToastMsg').textContent = msg;
+        toast.querySelector('i').className = `ti ${icon}`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      }
+
+      /** آپدیت شمارنده‌های صفحه */
+      function updateCount() {
+        const count = wishItems.length;
+        document.getElementById('itemCount').textContent = fa(count);
+        document.getElementById('wishlistBadge').textContent = fa(count);
+      }
+
+      /* ----------------------------------------------------------------
+         ساخت HTML یک کارت محصول
+      ---------------------------------------------------------------- */
+      function buildCard(item, removable = true) {
+        // بررسی اینکه آیا محصول پیشنهادی در علاقه‌مندی‌ها هست یا نه
+        const inWish = wishItems.some(i => i.id === item.id);
+        return `
+          <div class="wl-card" data-id="${item.id}" data-cat="${item.cat}">
+            <div class="wl-card__media" onclick="location.href='product.html'">
+              ${item.badge ? `<span class="wl-card__badge">${item.badge}</span>` : ''}
+              ${removable
+                ? `<button class="wl-card__remove" data-id="${item.id}" aria-label="حذف از علاقه‌مندی"
+                    onclick="event.stopPropagation()">
+                    <i class="ti ti-heart-off"></i>
+                  </button>`
+                : `<button class="wl-card__fav-toggle ${inWish ? 'in-wish' : ''}" data-id="${item.id}" aria-label="افزودن به علاقه‌مندی"
+                    onclick="event.stopPropagation()"
+                    style="position:absolute;top:10px;left:10px;width:32px;height:32px;border-radius:50%;
+                           background:rgba(255,255,255,.92);border:none;display:flex;align-items:center;
+                           justify-content:center;font-size:15px;cursor:pointer;transition:all .2s;
+                           z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.1);
+                           color:${inWish ? 'var(--c-red)' : 'var(--c-muted)'};">
+                    <i class="ti ${inWish ? 'ti-heart-filled' : 'ti-heart'}"></i>
+                  </button>`
+              }
+              <img src="${item.img}" alt="${item.title}" loading="lazy" />
+            </div>
+            <div class="wl-card__body">
+              <span class="wl-card__cat">${item.cat}</span>
+              <h3 class="wl-card__title" onclick="location.href='product.html'">${item.title}</h3>
+              <div class="wl-card__rating">
+                <i class="ti ti-star-filled"></i>
+                ${fa(item.rating)} <span>(${fa(item.reviews)})</span>
+              </div>
+              <span class="wl-card__stock ${item.stock}">
+                <i class="ti ti-${item.stock === 'in' ? 'circle-check' : item.stock === 'low' ? 'alert-circle' : 'circle-x'}"></i>
+                ${item.stockLabel}
+              </span>
+              <div class="wl-card__footer">
+                <div class="wl-card__prices">
+                  ${item.oldPrice ? `<span class="wl-card__old">${fmt(item.oldPrice)}</span>` : ''}
+                  <span class="wl-card__new">${fmt(item.price)} <small>تومان</small></span>
+                </div>
+                <button class="wl-card__add" data-id="${item.id}"
+                  aria-label="افزودن به سبد"
+                  ${item.stock === 'out' ? 'disabled title="ناموجود"' : ''}>
+                  <i class="ti ti-${item.stock === 'out' ? 'x' : 'plus'}"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      /* ----------------------------------------------------------------
+         رندر گرید علاقه‌مندی‌ها
+      ---------------------------------------------------------------- */
+      let activeFilter = 'all';
+
+      function renderWish() {
+        const grid = document.getElementById('wishGrid');
+
+        // فیلتر بر اساس دسته
+        let filtered = activeFilter === 'all'
+          ? [...wishItems]
+          : wishItems.filter(i => i.cat === activeFilter);
+
+        // مرتب‌سازی
+        const sort = document.getElementById('sortSelect').value;
+        if (sort === 'price-asc')  filtered.sort((a, b) => a.price - b.price);
+        if (sort === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+        if (sort === 'name')       filtered.sort((a, b) => a.title.localeCompare(b.title));
+
+        if (!filtered.length) {
+          grid.innerHTML = `
+            <div class="wl-empty">
+              <div class="wl-empty__icon"><i class="ti ti-heart-off"></i></div>
+              <h3>موردی یافت نشد</h3>
+              <p>هیچ محصولی در این دسته‌بندی در لیست شما وجود ندارد.</p>
+              <a href="products.html" class="wl-btn wl-btn--green" style="text-decoration:none">
+                <i class="ti ti-shopping-bag"></i> مشاهده محصولات
+              </a>
+            </div>`;
+          return;
+        }
+
+        grid.innerHTML = filtered.map(i => buildCard(i)).join('');
+        attachWishEvents(grid);
+        updateCount();
+      }
+
+      /* ----------------------------------------------------------------
+         رندر پیشنهادها
+      ---------------------------------------------------------------- */
+      function renderSuggest() {
+        const grid = document.getElementById('suggestGrid');
+        grid.innerHTML = suggestItems.map(i => buildCard(i, false)).join('');
+
+        // دکمه‌های افزودن به سبد در پیشنهادها
+        grid.querySelectorAll('.wl-card__add').forEach(btn => {
+          btn.addEventListener('click', e => {
+            e.stopPropagation();
+            showToast('محصول به سبد خرید اضافه شد', 'ti-shopping-cart-plus');
+          });
+        });
+
+        // دکمه‌های افزودن/حذف علاقه‌مندی در پیشنهادها
+        grid.querySelectorAll('.wl-card__fav-toggle').forEach(btn => {
+          btn.addEventListener('click', e => {
+            e.stopPropagation();
+            const id = btn.dataset.id;
+            const alreadyIn = wishItems.some(i => i.id === id);
+
+            if (alreadyIn) {
+              // حذف از علاقه‌مندی
+              wishItems = wishItems.filter(i => i.id !== id);
+              btn.querySelector('i').className = 'ti ti-heart';
+              btn.style.color = 'var(--c-muted)';
+              showToast('از علاقه‌مندی‌ها حذف شد', 'ti-heart-off');
+            } else {
+              // افزودن به علاقه‌مندی از پیشنهادها
+              const product = suggestItems.find(i => i.id === id);
+              if (product) wishItems.push(product);
+              btn.querySelector('i').className = 'ti ti-heart-filled';
+              btn.style.color = 'var(--c-red)';
+              showToast('به علاقه‌مندی‌ها اضافه شد', 'ti-heart');
+              // رندر مجدد گرید اصلی تا محصول جدید نمایش داده شود
+              renderWish();
+            }
+            updateCount();
+          });
+        });
+      }
+
+      /* ----------------------------------------------------------------
+         اتصال رویدادهای گرید اصلی
+      ---------------------------------------------------------------- */
+      function attachWishEvents(grid) {
+
+        /* حذف از علاقه‌مندی */
+        grid.querySelectorAll('.wl-card__remove').forEach(btn => {
+          btn.addEventListener('click', e => {
+            e.stopPropagation();
+            const id   = btn.dataset.id;
+            const card = grid.querySelector(`.wl-card[data-id="${id}"]`);
+
+            card.classList.add('removing');
+            setTimeout(() => {
+              wishItems = wishItems.filter(i => i.id !== id);
+              renderWish();
+              showToast('از علاقه‌مندی‌ها حذف شد', 'ti-heart-off');
+            }, 350);
+          });
+        });
+
+        /* افزودن به سبد خرید */
+        grid.querySelectorAll('.wl-card__add:not([disabled])').forEach(btn => {
+          btn.addEventListener('click', e => {
+            e.stopPropagation();
+            btn.innerHTML = '<i class="ti ti-check"></i>';
+            btn.style.background = '#22c55e';
+            setTimeout(() => {
+              btn.innerHTML = '<i class="ti ti-plus"></i>';
+              btn.style.background = '';
+            }, 1200);
+            showToast('محصول به سبد خرید اضافه شد', 'ti-shopping-cart-plus');
+          });
+        });
+      }
+
+      /* ----------------------------------------------------------------
+         دکمه «افزودن همه به سبد»
+      ---------------------------------------------------------------- */
+      document.getElementById('addAllToCart').addEventListener('click', () => {
+        const available = wishItems.filter(i => i.stock !== 'out');
+        if (!available.length) { showToast('هیچ محصول موجودی در لیست نیست', 'ti-alert-circle'); return; }
+        showToast(`${fa(available.length)} محصول به سبد اضافه شد`, 'ti-shopping-cart-plus');
+      });
+
+      /* ----------------------------------------------------------------
+         دکمه «حذف همه»
+      ---------------------------------------------------------------- */
+      document.getElementById('clearAll').addEventListener('click', () => {
+        if (!wishItems.length) return;
+        if (!confirm('آیا از حذف تمام موارد اطمینان دارید؟')) return;
+        wishItems = [];
+        renderWish();
+        showToast('لیست علاقه‌مندی‌ها پاک شد', 'ti-trash');
+      });
+
+      /* ----------------------------------------------------------------
+         فیلترها
+      ---------------------------------------------------------------- */
+      document.getElementById('filterBtns').addEventListener('click', e => {
+        const btn = e.target.closest('.wl-filter-btn');
+        if (!btn) return;
+        document.querySelectorAll('.wl-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.cat;
+        renderWish();
+      });
+
+      /* ----------------------------------------------------------------
+         مرتب‌سازی
+      ---------------------------------------------------------------- */
+      document.getElementById('sortSelect').addEventListener('change', renderWish);
+
+      /* ----------------------------------------------------------------
+         رندر اولیه
+      ---------------------------------------------------------------- */
+      renderWish();
+      renderSuggest();
+
+    }); // end DOMContentLoaded
+    </script>
+  </body>
+</html>
