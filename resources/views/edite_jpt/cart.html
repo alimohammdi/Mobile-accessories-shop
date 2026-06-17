@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="سبد خرید شما در فروشگاه غباس" />
+    <link rel="icon" href="favicon.ico" />
+    <title>سبد خرید | غباس</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css"
+    />
+    <link rel="stylesheet" href="style_production_responsive.css" />
+    
+  
+<link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+    <!-- Topbar -->
+    <div class="topbar">
+      🎉 جشنواره زمستانی: تا <strong>۵۰٪</strong> تخفیف روی تمام لوازم جانبی
+      موبایل | کد تخفیف: <strong>WINTER2026</strong>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container header__row">
+        <a href="index.html" class="logo">
+          <span class="logo__mark">
+            <img
+              src="assets/images/logo.png"
+              alt="لوگو غباس"
+              onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\'ti ti-bolt\'></i>';"
+            />
+          </span>
+          <span>
+            <span class="logo__text">غباس</span>
+            <span class="logo__sub">GHABOS.IR</span>
+          </span>
+        </a>
+
+        <div class="search">
+          <input
+            type="text"
+            placeholder="جستجوی سراسری در محصولات، برندها و دسته‌بندی‌ها..."
+          />
+          <button aria-label="جستجو"><i class="ti ti-search"></i></button>
+        </div>
+
+        <div class="header__actions">
+          <a href="login.html" class="auth-pill">
+            <i class="ti ti-user"></i>
+            <span>ورود | ثبت‌نام</span>
+          </a>
+          <button class="icon-btn" aria-label="حالت شب" id="themeToggle">
+            <i class="ti ti-moon"></i>
+          </button>
+          <button class="icon-btn" aria-label="علاقه‌مندی‌ها" onclick="location.href='wishlist.html'">
+            <i class="ti ti-heart"></i>
+            <span class="badge" id="wishlistBadge">۲</span>
+          </button>
+          <button class="icon-btn cart" aria-label="سبد خرید" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <i class="ti ti-shopping-bag"></i>
+            <span class="badge" id="cartBadge">۳</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="container nav__row">
+          <button class="mobile-menu-toggle" aria-label="منو">
+            <i class="ti ti-menu-2"></i>
+          </button>
+          <button class="nav__cats">
+            <i class="ti ti-menu-2"></i> همه دسته‌بندی‌ها
+          </button>
+          <a href="products.html">پرفروش‌ترین‌ها</a>
+          <a href="products.html?filter=hot" class="nav__hot">شگفت‌انگیزها</a>
+          <a href="products.html">تازه‌های فروشگاه</a>
+          <a href="blog.html">مجله غباس</a>
+          <a href="faq.html">پرسش‌های متداول</a>
+          <div class="nav__spacer"></div>
+          <div class="nav__delivery">
+            <i class="ti ti-map-pin"></i>
+            ارسال به: <b>تهران، سعادت‌آباد</b>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =================== MAIN =================== -->
+    <main>
+      <div class="container cart-page">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="مسیر">
+          <a href="index.html"><i class="ti ti-home"></i> خانه</a>
+          <i class="ti ti-chevron-left"></i>
+          <span>سبد خرید</span>
+        </nav>
+
+        <!-- Page title -->
+        <h1 class="cart-page__title">
+          <i class="ti ti-shopping-bag"></i>
+          سبد خرید
+          <span class="cart-count" id="pageCartCount">۳ محصول</span>
+        </h1>
+
+        <!-- Steps -->
+        <div class="cart-steps">
+          <div class="cart-step active">
+            <div class="cart-step__num">۱</div>
+            <span class="cart-step__label">سبد خرید</span>
+          </div>
+          <div class="cart-step__line"></div>
+          <div class="cart-step">
+            <div class="cart-step__num">۲</div>
+            <span class="cart-step__label">اطلاعات ارسال</span>
+          </div>
+          <div class="cart-step__line"></div>
+          <div class="cart-step">
+            <div class="cart-step__num">۳</div>
+            <span class="cart-step__label">پرداخت</span>
+          </div>
+          <div class="cart-step__line"></div>
+          <div class="cart-step">
+            <div class="cart-step__num">۴</div>
+            <span class="cart-step__label">تأیید سفارش</span>
+          </div>
+        </div>
+
+        <!-- Layout -->
+        <div class="cart-layout" id="cartLayout">
+
+          <!-- Left: items + coupon -->
+          <div>
+            <!-- Cart items panel -->
+            <div class="cart-items">
+              <div class="cart-items__head">
+                <span class="cart-items__head-title">
+                  <i class="ti ti-package"></i> محصولات سبد
+                </span>
+                <button class="cart-clear-btn" id="clearCartBtn">
+                  <i class="ti ti-trash"></i> پاک کردن همه
+                </button>
+              </div>
+              <div class="cart-items__list" id="cartItemsList">
+                <!-- items rendered by JS -->
+              </div>
+
+              <!-- Coupon -->
+              <div class="cart-coupon">
+                <input
+                  type="text"
+                  id="couponInput"
+                  placeholder="کد تخفیف دارید؟ اینجا وارد کنید"
+                  maxlength="20"
+                />
+                <button class="cart-coupon__btn" id="applyCoupon">
+                  <i class="ti ti-tag"></i> اعمال
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: summary -->
+          <div>
+            <div class="cart-summary">
+              <div class="cart-summary__head">
+                <i class="ti ti-receipt"></i> خلاصه سفارش
+              </div>
+
+              <!-- Shipping bar -->
+              <div class="shipping-notice" id="shippingNotice">
+                <i class="ti ti-truck-delivery"></i>
+                <div style="flex:1">
+                  <span id="shippingMsg">برای ارسال رایگان ۱,۲۵۰,۰۰۰ تومان دیگر خرید کنید</span>
+                  <div class="shipping-progress">
+                    <div class="shipping-progress__bar" id="shippingBar" style="width:74%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-summary__rows">
+                <div class="summary-row">
+                  <span class="summary-row__label">قیمت کالاها (<span id="summaryQty">۳</span> عدد)</span>
+                  <span class="summary-row__val" id="summaryOriginal">۸,۴۳۰,۰۰۰ تومان</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-row__label">تخفیف کالاها</span>
+                  <span class="summary-row__val red" id="summaryDiscount">−۱,۶۰۶,۰۰۰ تومان</span>
+                </div>
+                <div class="summary-row" id="couponRow" style="display:none">
+                  <span class="summary-row__label">تخفیف کد</span>
+                  <span class="summary-row__val green" id="summaryCoupon">−۰ تومان</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-row__label">هزینه ارسال</span>
+                  <span class="summary-row__val green" id="summaryShipping">رایگان</span>
+                </div>
+                <div class="summary-row total">
+                  <span class="summary-row__label">مبلغ قابل پرداخت</span>
+                  <span class="summary-row__val" id="summaryTotal">۶,۸۲۴,۰۰۰ <small>تومان</small></span>
+                </div>
+              </div>
+
+              <div class="cart-summary__footer">
+                <a href="checkout.html" class="checkout-btn" id="checkoutBtn">
+                  <i class="ti ti-lock"></i>
+                  ادامه و پرداخت امن
+                  <i class="ti ti-arrow-left"></i>
+                </a>
+                <a href="index.html" class="continue-btn">
+                  <i class="ti ti-arrow-right"></i>
+                  ادامه خرید
+                </a>
+              </div>
+
+              <div class="cart-guarantees">
+                <div class="guarantee-item">
+                  <i class="ti ti-shield-check"></i>
+                  پرداخت ۱۰۰٪ امن و رمزنگاری‌شده
+                </div>
+                <div class="guarantee-item">
+                  <i class="ti ti-refresh"></i>
+                  ۷ روز ضمانت بازگشت وجه
+                </div>
+                <div class="guarantee-item">
+                  <i class="ti ti-certificate"></i>
+                  گارانتی اصالت کالا
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /cart-layout -->
+
+        <!-- Suggested products -->
+        <div class="cart-suggest">
+          <div class="section__head">
+            <h2 class="section__title">محصولات <span>پیشنهادی</span></h2>
+            <a href="products.html" class="section__more">مشاهده همه <i class="ti ti-arrow-left"></i></a>
+          </div>
+          <div class="cart-suggest__grid" id="suggestGrid">
+            <!-- suggested product cards rendered by JS -->
+          </div>
+        </div>
+
+      </div><!-- /container -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div>
+          <div class="footer__brand">
+            <div class="logo__mark" style="width:44px;height:44px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px">
+              <i class="ti ti-bolt"></i>
+            </div>
+            <div>
+              <span style="font-size:22px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">غباس</span>
+              <span class="logo__sub" style="display:block;font-size:10px;color:var(--c-muted);letter-spacing:1px">GHABOS.IR</span>
+            </div>
+          </div>
+          <p class="footer__desc">فروشگاه تخصصی موبایل و لوازم جانبی اصل با بهترین قیمت و ارسال سریع به سراسر ایران.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="اینستاگرام"><i class="ti ti-brand-instagram"></i></a>
+            <a href="#" aria-label="تلگرام"><i class="ti ti-brand-telegram"></i></a>
+            <a href="#" aria-label="واتس‌اپ"><i class="ti ti-brand-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>دسترسی سریع</h4>
+          <ul>
+            <li><a href="index.html">صفحه اصلی</a></li>
+            <li><a href="products.html">محصولات</a></li>
+            <li><a href="about.html">درباره ما</a></li>
+            <li><a href="contact.html">تماس با ما</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>حساب کاربری</h4>
+          <ul>
+            <li><a href="login.html">ورود / ثبت‌نام</a></li>
+            <li><a href="orders.html">سفارش‌های من</a></li>
+            <li><a href="wishlist.html">علاقه‌مندی‌ها</a></li>
+            <li><a href="cart.html">سبد خرید</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>ارتباط با ما</h4>
+          <ul>
+            <li><i class="ti ti-map-pin"></i> تهران، سعادت‌آباد</li>
+            <li><i class="ti ti-phone"></i> ۰۲۱-۱۲۳۴۵۶۷۸</li>
+            <li><i class="ti ti-mail"></i> support@ghabos.ir</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer__bottom">
+        <span>© ۱۴۰۵ غباس - تمامی حقوق محفوظ است.</span>
+        <div class="footer__payments">
+          <i class="ti ti-credit-card"></i>
+          <i class="ti ti-shield-check"></i>
+          <i class="ti ti-truck-delivery"></i>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile bottom nav -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav__row">
+        <a href="index.html"><i class="ti ti-home"></i> خانه</a>
+        <a href="categories.html"><i class="ti ti-category"></i> دسته‌ها</a>
+        <a href="cart.html" class="center active">
+          <i class="ti ti-shopping-bag"></i><span class="badge">۳</span>
+        </a>
+        <a href="wishlist.html"><i class="ti ti-heart"></i> علاقه‌مندی</a>
+        <a href="profile.html"><i class="ti ti-user"></i> پروفایل</a>
+      </div>
+    </nav>
+
+    <!-- در صفحه سبد خرید نیازی به modal نیست — کاربر الان در همین صفحه است -->
+    
+  
+<script src="js/app.js"></script>
+</body>
+</html>

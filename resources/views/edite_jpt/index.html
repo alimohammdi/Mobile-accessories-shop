@@ -15,6 +15,7 @@
     <meta property="og:type" content="website" />
     <link rel="icon" href="favicon.ico" />
     <title>غباس | فروشگاه موبایل و لوازم جانبی</title>
+    @verbatim
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -32,11 +33,22 @@
         }
       }
     </script>
+    @endverbatim
+    <!-- Performance: warm up connections to external origins early -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css"
     />
-    <link rel="stylesheet" href="style_production_responsive.css" />
   </head>
   <body>
     <!-- Topbar -->
@@ -51,7 +63,10 @@
         <a href="index.html" class="logo">
           <span class="logo__mark"
             ><img
-              src="images/logo.png"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              src="assets/images/logo.png"
               alt="لوگو غباس"
               onerror="
                 this.style.display = 'none';
@@ -165,6 +180,9 @@
         <div class="hero__grid">
           <div class="hero__main">
             <img
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
               class="hero__bg"
               src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?q=80&w=1200&auto=format&fit=crop"
               alt="شارژر و کابل موبایل"
@@ -187,6 +205,8 @@
           <div class="hero__side">
             <div class="hero__card green">
               <img
+                loading="eager"
+                decoding="async"
                 class="hero__card-bg"
                 src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop"
                 alt="هندزفری بلوتوث"
@@ -199,6 +219,8 @@
             </div>
             <div class="hero__card blue">
               <img
+                loading="eager"
+                decoding="async"
                 class="hero__card-bg"
                 src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=800&auto=format&fit=crop"
                 alt="قاب گوشی موبایل"
@@ -225,6 +247,8 @@
           <a href="products.html?cat=charger" class="cat-card">
             <div class="cat-card__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/categories/charger.png"
                 alt="شارژر و کابل"
                 onerror="this.style.display = 'none'"
@@ -235,6 +259,8 @@
           <a href="products.html?cat=headphone" class="cat-card">
             <div class="cat-card__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/categories/headphone.png"
                 alt="هندزفری و اسپیکر"
                 onerror="this.style.display = 'none'"
@@ -245,6 +271,8 @@
           <a href="products.html?cat=case" class="cat-card">
             <div class="cat-card__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/categories/case.png"
                 alt="قاب و محافظ"
                 onerror="this.style.display = 'none'"
@@ -255,6 +283,8 @@
           <a href="products.html?cat=powerbank" class="cat-card">
             <div class="cat-card__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/categories/powerbank.png"
                 alt="پاوربانک"
                 onerror="this.style.display = 'none'"
@@ -265,6 +295,8 @@
           <a href="products.html?cat=watch" class="cat-card">
             <div class="cat-card__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/categories/watch.png"
                 alt="ساعت هوشمند"
                 onerror="this.style.display = 'none'"
@@ -275,6 +307,8 @@
           <a href="products.html?cat=holder" class="cat-card">
             <div class="cat-card__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/categories/holder.png"
                 alt="هولدر و پایه"
                 onerror="this.style.display = 'none'"
@@ -285,6 +319,8 @@
           <a href="products.html?cat=memory" class="cat-card">
             <div class="cat-card__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/categories/memory.png"
                 alt="حافظه و رم"
                 onerror="this.style.display = 'none'"
@@ -309,6 +345,8 @@
               <span class="product-card__badge">۲۰٪</span>
               <span class="product-card__fav"><i class="ti ti-heart"></i></span>
               <img
+                loading="lazy"
+                decoding="async"
                 src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?q=80&w=400&auto=format&fit=crop"
                 alt="کابل شارژ سریع Type-C"
               />
@@ -337,6 +375,8 @@
             <div class="product-card__media">
               <span class="product-card__fav"><i class="ti ti-heart"></i></span>
               <img
+                loading="lazy"
+                decoding="async"
                 src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?q=80&w=400&auto=format&fit=crop"
                 alt="هندزفری بلوتوث"
               />
@@ -365,6 +405,8 @@
               <span class="product-card__badge">۱۵٪</span>
               <span class="product-card__fav"><i class="ti ti-heart"></i></span>
               <img
+                loading="lazy"
+                decoding="async"
                 src="https://images.unsplash.com/photo-1609692814859-44520415e4b6?q=80&w=400&auto=format&fit=crop"
                 alt="پاوربانک"
               />
@@ -393,6 +435,8 @@
             <div class="product-card__media">
               <span class="product-card__fav"><i class="ti ti-heart"></i></span>
               <img
+                loading="lazy"
+                decoding="async"
                 src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=400&auto=format&fit=crop"
                 alt="قاب گوشی"
               />
@@ -421,6 +465,8 @@
               <span class="product-card__badge">۳۰٪</span>
               <span class="product-card__fav"><i class="ti ti-heart"></i></span>
               <img
+                loading="lazy"
+                decoding="async"
                 src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=400&auto=format&fit=crop"
                 alt="ساعت هوشمند"
               />
@@ -459,6 +505,8 @@
               <a href="products.html" class="promo-card__btn">شروع خرید</a>
             </div>
             <img
+              loading="lazy"
+              decoding="async"
               class="promo-card__img"
               src="https://images.unsplash.com/photo-1556656793-08538906a9f8?q=80&w=400&auto=format&fit=crop"
               alt="پیشنهاد ویژه"
@@ -473,6 +521,8 @@
               <a href="products.html" class="promo-card__btn">اطلاعات بیشتر</a>
             </div>
             <img
+              loading="lazy"
+              decoding="async"
               class="promo-card__img"
               src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?q=80&w=400&auto=format&fit=crop"
               alt="گارانتی"
@@ -490,6 +540,8 @@
           <div class="brand-item">
             <div class="brand-item__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/brands/apple.png"
                 alt="اپل"
                 onerror="this.style.display = 'none'"
@@ -500,6 +552,8 @@
           <div class="brand-item">
             <div class="brand-item__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/brands/samsung.png"
                 alt="سامسونگ"
                 onerror="this.style.display = 'none'"
@@ -510,6 +564,8 @@
           <div class="brand-item">
             <div class="brand-item__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/brands/anker.png"
                 alt="انکر"
                 onerror="this.style.display = 'none'"
@@ -520,6 +576,8 @@
           <div class="brand-item">
             <div class="brand-item__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/brands/xiaomi.png"
                 alt="شیائومی"
                 onerror="this.style.display = 'none'"
@@ -530,6 +588,8 @@
           <div class="brand-item">
             <div class="brand-item__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/brands/beats.png"
                 alt="بیتس"
                 onerror="this.style.display = 'none'"
@@ -540,6 +600,8 @@
           <div class="brand-item">
             <div class="brand-item__icon">
               <img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/brands/ugreen.png"
                 alt="یوگرین"
                 onerror="this.style.display = 'none'"
@@ -574,6 +636,8 @@
           <div class="footer__logo">
             <span class="logo__mark"
               ><img
+                loading="lazy"
+                decoding="async"
                 src="assets/images/logo.png"
                 alt="لوگو غباس"
                 onerror="
@@ -755,6 +819,6 @@
       </div>
     </div>
 
-    <script src="app.js" defer></script>
+    <script src="js/app.js" defer></script>
   </body>
 </html>
