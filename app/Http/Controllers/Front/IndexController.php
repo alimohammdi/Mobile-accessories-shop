@@ -12,8 +12,19 @@ class IndexController extends Controller
      */
     public function index()
     {
-         return view('front.layouts.master');
+         return view('front.index');
     }
+    public function loginPage()
+    {
+         return view('front.login');
+    }
+    public function  notFound(){
+        return view('front.404');
+      }
+      public function  errorServer(){
+        return view('front.500');
+      }
+
 
     /**
      * Show the form for creating a new resource.

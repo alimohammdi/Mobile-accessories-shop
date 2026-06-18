@@ -3880,3 +3880,497 @@ body.dark .cart-empty {
         justify-content: center;
     }
 }
+
+body.dark {
+    --c-bg: #0b1518;
+    --c-surface: #0f1a1d;
+    --c-ink: #e0ecee;
+    --c-muted: #5a7880;
+    --c-border: #1e2f34;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Vazirmatn", sans-serif;
+    background: var(--c-bg);
+    color: var(--c-ink);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* ────────────────────────────
+       لوگو دایره‌ای
+    ──────────────────────────── */
+.p404-logo-circle {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    box-shadow:
+        0 0 0 6px var(--c-surface),
+        0 0 0 9px rgba(47, 184, 117, 0.35),
+        0 20px 60px rgba(47, 184, 117, 0.22),
+        0 8px 24px rgba(46, 143, 230, 0.18);
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+.p404-logo-circle:hover {
+    transform: scale(1.03);
+    box-shadow:
+        0 0 0 6px var(--c-surface),
+        0 0 0 9px rgba(47, 184, 117, 0.5),
+        0 28px 70px rgba(47, 184, 117, 0.3),
+        0 10px 30px rgba(46, 143, 230, 0.25);
+}
+
+/* عدد ۴۰۴ زیر لوگو */
+.p404-badge {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--grad);
+    color: #fff;
+    font-size: 22px;
+    font-weight: 900;
+    font-family: "Vazirmatn", sans-serif;
+    letter-spacing: -1px;
+    padding: 8px 28px;
+    border-radius: 30px;
+    box-shadow: 0 6px 20px rgba(47, 184, 117, 0.35);
+    white-space: nowrap;
+    border: 3px solid var(--c-surface);
+}
+
+.p404-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+.p404-logo__mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--grad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+}
+.p404-logo__text {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--c-ink);
+}
+.p404-logo__sub {
+    font-size: 10px;
+    color: var(--c-muted);
+    display: block;
+}
+.p404-theme {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--c-border);
+    background: var(--c-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--c-muted);
+    font-size: 16px;
+    transition: all 0.2s;
+}
+.p404-theme:hover {
+    border-color: var(--c-blue);
+    color: var(--c-blue);
+}
+
+/* ────────────────────────────
+       ناحیه اصلی
+    ──────────────────────────── */
+.p404-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    gap: 64px;
+    flex-wrap: wrap;
+}
+
+/* ────────────────────────────
+       تصویر SVG سمت چپ
+    ──────────────────────────── */
+.p404-visual {
+    position: relative;
+    width: 320px;
+    max-width: 100%;
+    flex-shrink: 1;
+    padding-bottom: 28px;
+}
+
+/* حلقه لوگو */
+.p404-g-ring {
+    width: 100%;
+    aspect-ratio: 1;
+    position: relative;
+}
+
+.p404-g-ring svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 16px 40px rgba(46, 143, 230, 0.22));
+}
+
+/* عدد 404 روی حلقه */
+.p404-number {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+}
+.p404-number__label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--c-muted);
+    text-transform: uppercase;
+}
+.p404-number__big {
+    font-size: 86px;
+    font-weight: 900;
+    line-height: 1;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -4px;
+}
+
+/* مدار الکترونیکی شناور */
+.p404-circuit {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* نقاط چشمک‌زن روی مدار */
+.circuit-dot {
+    animation: blink 1.8s ease-in-out infinite;
+}
+.circuit-dot:nth-child(2) {
+    animation-delay: 0.4s;
+}
+.circuit-dot:nth-child(3) {
+    animation-delay: 0.8s;
+}
+.circuit-dot:nth-child(4) {
+    animation-delay: 1.2s;
+}
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* موبایل شناور */
+.p404-phone {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: float 3.5s ease-in-out infinite;
+}
+@keyframes float {
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-12px);
+    }
+}
+
+/* ────────────────────────────
+       محتوای متنی سمت راست
+    ──────────────────────────── */
+.p404-content {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.p404-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(47, 184, 117, 0.1);
+    border: 1px solid rgba(47, 184, 117, 0.25);
+    color: var(--c-green);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 13px;
+    border-radius: 30px;
+    width: fit-content;
+}
+.p404-title {
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--c-ink);
+}
+.p404-title span {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.p404-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--c-muted);
+}
+
+/* پیشنهادهای سریع */
+.p404-suggestions {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.p404-suggestions__title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--c-muted);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.p404-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--c-ink);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.18s;
+    border: 1px solid transparent;
+}
+.p404-link:hover {
+    background: var(--c-bg);
+    border-color: var(--c-border);
+    color: var(--c-green);
+}
+.p404-link i {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--c-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--c-green);
+    flex-shrink: 0;
+    border: 1px solid var(--c-border);
+}
+.p404-link:hover i {
+    background: rgba(47, 184, 117, 0.12);
+}
+
+/* دکمه‌های اصلی */
+.p404-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.p404-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+}
+.p404-btn--primary {
+    background: var(--grad);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(46, 143, 230, 0.28);
+}
+.p404-btn--primary:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+.p404-btn--outline {
+    background: var(--c-surface);
+    border: 1.5px solid var(--c-border);
+    color: var(--c-ink);
+}
+.p404-btn--outline:hover {
+    border-color: var(--c-green);
+    color: var(--c-green);
+}
+
+/* جستجو */
+.p404-search {
+    display: flex;
+    border: 1.5px solid var(--c-border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--c-surface);
+    transition: border-color 0.2s;
+}
+.p404-search:focus-within {
+    border-color: var(--c-green);
+}
+.p404-search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    background: transparent;
+    color: var(--c-ink);
+    direction: rtl;
+}
+.p404-search input::placeholder {
+    color: var(--c-muted);
+}
+.p404-search button {
+    padding: 0 18px;
+    background: var(--grad);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.p404-search button:hover {
+    opacity: 0.85;
+}
+
+/* ────────────────────────────
+       فوتر ساده
+    ──────────────────────────── */
+.p404-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--c-muted);
+    border-top: 1px solid var(--c-border);
+}
+.p404-footer a {
+    color: var(--c-green);
+    text-decoration: none;
+}
+
+/* ────────────────────────────
+       ریسپانسیو
+    ──────────────────────────── */
+@media (max-width: 720px) {
+    /* هدر */
+    .p404-header {
+        padding: 12px 16px;
+    }
+    .p404-logo__text {
+        font-size: 17px;
+    }
+
+    /* چیدمان اصلی — ستونی و مرکزچین */
+    .p404-main {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        padding: 28px 16px 40px;
+    }
+
+    /* تصویر لوگو — واکنش‌گرا */
+    .p404-visual {
+        width: min(260px, 70vw);
+        padding-bottom: 28px;
+        flex-shrink: 1;
+    }
+    .p404-g-ring {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+    }
+    .p404-badge {
+        font-size: 15px;
+        padding: 6px 20px;
+        bottom: -14px;
+    }
+
+    /* محتوا — تمام عرض */
+    .p404-content {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    .p404-title {
+        font-size: 22px;
+    }
+    .p404-eyebrow {
+        margin: 0 auto;
+    }
+    .p404-actions {
+        justify-content: center;
+    }
+    .p404-search {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 380px) {
+    .p404-visual {
+        width: min(200px, 80vw);
+    }
+    .p404-title {
+        font-size: 19px;
+    }
+    .p404-btn {
+        padding: 11px 16px;
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .p404-phone,
+    .circuit-dot {
+        animation: none;
+    }
+}

@@ -34,6 +34,7 @@
       }
     </script>
     @endverbatim
+    <script src="{{  asset('front/js/app.js') }}"></script>
     <!-- Performance: warm up connections to external origins early -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
@@ -52,34 +53,11 @@
   </head>
   <body>
   <body>
-    <!-- Topbar -->
-   @include('front/Partials/Topbar/topbar')
 
-    <!-- Header -->
-    @include('front/Partials/Header/header')
-    </header>
+      {{--   content   --}}
 
-    <main>
-      <!-- Hero -->
-       @include('front.Partials.Banners.hero')
+      @yield('content')
 
-      <!-- Categories -->
-
-      <!-- New products -->
-       @include('front.Partials.NewProductsList.products')
-
-      <!-- Promo banners -->
-     @include('front.Partials.Banners.promo')
-
-      <!-- Brands -->
-     @include('front.Partials.Brands.brands')
-
-      <!-- Newsletter -->
-      @include('front.Partials.NewsLatter.newsLatter')
-
-    <!-- Footer -->
-     @include('front.partials.Footer.footer')
-    </footer>
 
     <!-- Mobile bottom nav -->
        @include('front.Partials.Navbar.mobileNav')

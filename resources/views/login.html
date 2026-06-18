@@ -1,778 +1,468 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ورود | ثبت‌نام - غباس</title>
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css"
-        />
-        <link rel="stylesheet" href="style_production_responsive.css" />
-    </head>
-    <body>
-        <!-- Topbar -->
-        <div class="topbar">
-            🎉 جشنواره زمستانی: تا <strong>۵۰٪</strong> تخفیف روی تمام لوازم
-            جانبی موبایل | کد تخفیف: <strong>WINTER2026</strong>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ورود | ثبت‌نام - غباس</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+    <link rel="stylesheet" href="style_production_responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css"
+    />
+  
+<link rel="stylesheet" href="css/style.css">
+</head>
+  <body>
+    <!-- Topbar -->
+    <div class="topbar">
+      🎉 جشنواره زمستانی: تا <strong>۵۰٪</strong> تخفیف روی تمام لوازم جانبی
+      موبایل | کد تخفیف: <strong>WINTER2026</strong>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container header__row">
+        <a href="index.html" class="logo">
+          <span class="logo__mark"
+            ><img loading="eager" decoding="async" fetchpriority="high"
+              src="assets/images/logo.png"
+              alt="لوگو غباس"
+              onerror="
+                this.style.display = 'none';
+                this.parentElement.innerHTML = '<i class=\'ti ti-bolt\'></i>';
+              "
+          /></span>
+          <span>
+            <span class="logo__text">غباس</span>
+            <span class="logo__sub">GHABOS.IR</span>
+          </span>
+        </a>
+
+        <div class="search">
+          <input
+            type="text"
+            placeholder="جستجوی سراسری در محصولات، برندها و دسته‌بندی‌ها..."
+          />
+          <button aria-label="جستجو"><i class="ti ti-search"></i></button>
         </div>
 
-        <!-- Header -->
-        <header class="header">
-            <div class="container header__row">
-                <a href="index.html" class="logo">
-                    <span class="logo__mark"
-                        ><img
-                            src="assets/images/logo.png"
-                            alt="لوگو غباس"
-                            onerror="
-                                this.style.display = 'none';
-                                this.parentElement.innerHTML =
-                                    '<i class=\'ti ti-bolt\'></i>';
-                            "
-                    /></span>
-                    <span>
-                        <span class="logo__text">غباس</span>
-                        <span class="logo__sub">GHABOS.IR</span>
-                    </span>
-                </a>
+        <div class="header__actions">
+          <a href="login.html" class="auth-pill">
+            <i class="ti ti-user"></i>
+            <span>ورود | ثبت‌نام</span>
+          </a>
+          <button
+            class="icon-btn"
+            aria-label="حالت شب"
+            onclick="document.body.classList.toggle('dark')"
+          >
+            <i class="ti ti-moon"></i>
+          </button>
+          <a href="wishlist.html" class="icon-btn" aria-label="علاقه‌مندی‌ها">
+            <i class="ti ti-heart"></i>
+            <span class="badge">۲</span>
+          </a>
+          <a href="cart.html" class="icon-btn cart" aria-label="سبد خرید">
+            <i class="ti ti-shopping-bag"></i>
+            <span class="badge">۳</span>
+          </a>
+        </div>
+      </div>
 
-                <div class="search">
-                    <input
-                        type="text"
-                        placeholder="جستجوی سراسری در محصولات، برندها و دسته‌بندی‌ها..."
-                    />
-                    <button aria-label="جستجو">
-                        <i class="ti ti-search"></i>
-                    </button>
+      <nav class="nav">
+        <div class="container nav__row">
+          <button class="nav__cats" id="openDrawer">
+            <i class="ti ti-menu-2"></i> همه دسته‌بندی‌ها
+          </button>
+          <a href="products.html">پرفروش‌ترین‌ها</a>
+          <a href="products.html?filter=hot" class="nav__hot">شگفت‌انگیزها</a>
+          <a href="products.html">تازه‌های فروشگاه</a>
+          <a href="blog.html">مجله غباس</a>
+          <a href="faq.html">پرسش‌های متداول</a>
+          <div class="nav__spacer"></div>
+          <div class="nav__delivery">
+            <i class="ti ti-map-pin"></i>
+            ارسال به: <b>تهران، سعادت‌آباد</b>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Auth -->
+      <section class="container auth-page">
+        <div class="auth-card">
+          <div class="auth-tabs" id="authTabs">
+            <button class="auth-tab active" data-target="login">
+              ورود
+              <small>به حساب کاربری</small>
+            </button>
+            <button class="auth-tab" data-target="register">
+              ثبت‌نام
+              <small>عضویت در غباس</small>
+            </button>
+          </div>
+
+          <div class="auth-body">
+            <!-- Login form -->
+            <form class="auth-form active" id="login" onsubmit="return false;">
+              <div class="auth-head">
+                <div class="auth-head__icon">
+                  <i class="ti ti-fingerprint"></i>
                 </div>
+                <h2>ورود به حساب کاربری</h2>
+                <p>برای ادامه، شماره موبایل و رمز عبور خود را وارد کنید</p>
+              </div>
 
-                <div class="header__actions">
-                    <a href="login.html" class="auth-pill">
-                        <i class="ti ti-user"></i>
-                        <span>ورود | ثبت‌نام</span>
-                    </a>
-                    <button
-                        class="icon-btn"
-                        aria-label="حالت شب"
-                        onclick="document.body.classList.toggle('dark')"
-                    >
-                        <i class="ti ti-moon"></i>
-                    </button>
-                    <a
-                        href="wishlist.html"
-                        class="icon-btn"
-                        aria-label="علاقه‌مندی‌ها"
-                    >
-                        <i class="ti ti-heart"></i>
-                        <span class="badge">۲</span>
-                    </a>
-                    <a
-                        href="cart.html"
-                        class="icon-btn cart"
-                        aria-label="سبد خرید"
-                    >
-                        <i class="ti ti-shopping-bag"></i>
-                        <span class="badge">۳</span>
-                    </a>
+              <div class="field">
+                <label for="login-phone">شماره موبایل</label>
+                <div class="input-wrap">
+                  <i class="ti ti-device-mobile"></i>
+                  <input
+                    type="tel"
+                    id="login-phone"
+                    placeholder="09xxxxxxxxx"
+                    inputmode="numeric"
+                  />
                 </div>
-            </div>
+              </div>
 
-            <nav class="nav">
-                <div class="container nav__row">
-                    <button class="nav__cats" id="openDrawer">
-                        <i class="ti ti-menu-2"></i> همه دسته‌بندی‌ها
-                    </button>
-                    <a href="products.html">پرفروش‌ترین‌ها</a>
-                    <a href="products.html?filter=hot" class="nav__hot"
-                        >شگفت‌انگیزها</a
-                    >
-                    <a href="products.html">تازه‌های فروشگاه</a>
-                    <a href="blog.html">مجله غباس</a>
-                    <a href="faq.html">پرسش‌های متداول</a>
-                    <div class="nav__spacer"></div>
-                    <div class="nav__delivery">
-                        <i class="ti ti-map-pin"></i>
-                        ارسال به: <b>تهران، سعادت‌آباد</b>
-                    </div>
+              <div class="field">
+                <label for="login-pass">رمز عبور</label>
+                <div class="input-wrap">
+                  <i class="ti ti-lock"></i>
+                  <input
+                    type="password"
+                    id="login-pass"
+                    placeholder="رمز عبور خود را وارد کنید"
+                  />
+                  <button
+                    type="button"
+                    class="toggle-pass"
+                    data-for="login-pass"
+                  >
+                    <i class="ti ti-eye"></i>
+                  </button>
                 </div>
-            </nav>
-        </header>
+              </div>
 
-        <main>
-            <!-- Auth -->
-            <section class="container auth-page">
-                <div class="auth-card">
-                    <div class="auth-tabs" id="authTabs">
-                        <button class="auth-tab active" data-target="login">
-                            ورود
-                            <small>به حساب کاربری</small>
-                        </button>
-                        <button class="auth-tab" data-target="register">
-                            ثبت‌نام
-                            <small>عضویت در غباس</small>
-                        </button>
-                    </div>
+              <div class="field-row">
+                <label class="checkbox">
+                  <input type="checkbox" /> مرا به خاطر بسپار
+                </label>
+                <a href="#">رمز را فراموش کرده‌اید؟</a>
+              </div>
 
-                    <div class="auth-body">
-                        <!-- Login form -->
-                        <form
-                            class="auth-form active"
-                            id="login"
-                            onsubmit="return false;"
-                        >
-                            <div class="auth-head">
-                                <div class="auth-head__icon">
-                                    <i class="ti ti-fingerprint"></i>
-                                </div>
-                                <h2>ورود به حساب کاربری</h2>
-                                <p>
-                                    برای ادامه، شماره موبایل و رمز عبور خود را
-                                    وارد کنید
-                                </p>
-                            </div>
+              <button type="submit" class="auth-submit">
+                ورود به حساب کاربری <i class="ti ti-arrow-left"></i>
+              </button>
 
-                            <div class="field">
-                                <label for="login-phone">شماره موبایل</label>
-                                <div class="input-wrap">
-                                    <i class="ti ti-device-mobile"></i>
-                                    <input
-                                        type="tel"
-                                        id="login-phone"
-                                        placeholder="09xxxxxxxxx"
-                                        inputmode="numeric"
-                                    />
-                                </div>
-                            </div>
+              <div class="auth-divider">یا ورود با</div>
+              <div class="auth-socials">
+                <button type="button">
+                  <i class="ti ti-brand-google"></i> گوگل
+                </button>
+                <button type="button" id="loginOtpBtn">
+                  <i class="ti ti-message"></i> پیامک
+                </button>
+              </div>
 
-                            <div class="field">
-                                <label for="login-pass">رمز عبور</label>
-                                <div class="input-wrap">
-                                    <i class="ti ti-lock"></i>
-                                    <input
-                                        type="password"
-                                        id="login-pass"
-                                        placeholder="رمز عبور خود را وارد کنید"
-                                    />
-                                    <button
-                                        type="button"
-                                        class="toggle-pass"
-                                        data-for="login-pass"
-                                    >
-                                        <i class="ti ti-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
+              <div class="auth-switch">
+                هنوز ثبت‌نام نکرده‌اید؟
+                <button type="button" data-target="register">
+                  ایجاد حساب کاربری
+                </button>
+              </div>
+            </form>
 
-                            <div class="field-row">
-                                <label class="checkbox">
-                                    <input type="checkbox" /> مرا به خاطر بسپار
-                                </label>
-                                <a href="#">رمز را فراموش کرده‌اید؟</a>
-                            </div>
-
-                            <button type="submit" class="auth-submit">
-                                ورود به حساب کاربری
-                                <i class="ti ti-arrow-left"></i>
-                            </button>
-
-                            <div class="auth-divider">یا ورود با</div>
-                            <div class="auth-socials">
-                                <button type="button">
-                                    <i class="ti ti-brand-google"></i> گوگل
-                                </button>
-                                <button type="button" id="loginOtpBtn">
-                                    <i class="ti ti-message"></i> پیامک
-                                </button>
-                            </div>
-
-                            <div class="auth-switch">
-                                هنوز ثبت‌نام نکرده‌اید؟
-                                <button type="button" data-target="register">
-                                    ایجاد حساب کاربری
-                                </button>
-                            </div>
-                        </form>
-
-                        <!-- Register form -->
-                        <form
-                            class="auth-form"
-                            id="register"
-                            onsubmit="return false;"
-                        >
-                            <div class="auth-head">
-                                <div class="auth-head__icon">
-                                    <i class="ti ti-user-plus"></i>
-                                </div>
-                                <h2>ثبت‌نام در غباس</h2>
-                                <p>چند قدم تا خریدی آسان و سریع فاصله دارید</p>
-                            </div>
-
-                            <div class="field">
-                                <label for="reg-name">نام و نام خانوادگی</label>
-                                <div class="input-wrap">
-                                    <i class="ti ti-user"></i>
-                                    <input
-                                        type="text"
-                                        id="reg-name"
-                                        placeholder="نام کامل خود را وارد کنید"
-                                    />
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label for="reg-phone">شماره موبایل</label>
-                                <div class="input-wrap">
-                                    <i class="ti ti-device-mobile"></i>
-                                    <input
-                                        type="tel"
-                                        id="reg-phone"
-                                        placeholder="09xxxxxxxxx"
-                                        inputmode="numeric"
-                                    />
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <label for="reg-pass">رمز عبور</label>
-                                <div class="input-wrap">
-                                    <i class="ti ti-lock"></i>
-                                    <input
-                                        type="password"
-                                        id="reg-pass"
-                                        placeholder="یک رمز عبور امن انتخاب کنید"
-                                    />
-                                    <button
-                                        type="button"
-                                        class="toggle-pass"
-                                        data-for="reg-pass"
-                                    >
-                                        <i class="ti ti-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="field-row">
-                                <label class="checkbox">
-                                    <input type="checkbox" /> با
-                                    <a href="#">قوانین و مقررات</a> غباس موافقم
-                                </label>
-                            </div>
-
-                            <button
-                                type="submit"
-                                class="auth-submit"
-                                id="registerSubmitBtn"
-                            >
-                                ثبت‌نام و ادامه <i class="ti ti-arrow-left"></i>
-                            </button>
-
-                            <div class="auth-divider">یا ثبت‌نام با</div>
-                            <div class="auth-socials">
-                                <button type="button">
-                                    <i class="ti ti-brand-google"></i> گوگل
-                                </button>
-                                <button type="button" id="registerOtpBtn">
-                                    <i class="ti ti-message"></i> پیامک
-                                </button>
-                            </div>
-
-                            <div class="auth-switch">
-                                قبلاً ثبت‌نام کرده‌اید؟
-                                <button type="button" data-target="login">
-                                    ورود به حساب کاربری
-                                </button>
-                            </div>
-                        </form>
-
-                        <!-- OTP verification form -->
-                        <form
-                            class="auth-form"
-                            id="otp"
-                            onsubmit="return false;"
-                        >
-                            <div class="otp-phone-box">
-                                <p>
-                                    برای شماره همراه
-                                    <b id="otpPhoneNumber" dir="ltr"
-                                        >۰۹xxxxxxxxx</b
-                                    >
-                                    کد تایید ارسال گردید
-                                </p>
-                                <button
-                                    type="button"
-                                    class="otp-edit-btn"
-                                    id="otpEditBtn"
-                                >
-                                    <i class="ti ti-edit"></i> ویرایش شماره
-                                    همراه
-                                </button>
-                            </div>
-
-                            <div class="auth-head" style="margin-top: 28px">
-                                <div class="auth-head__icon">
-                                    <i class="ti ti-shield-lock"></i>
-                                </div>
-                                <h2>کد فعال‌سازی ارسال شده را وارد کنید</h2>
-                                <p>کد ۵ رقمی به شماره همراه شما پیامک شد</p>
-                            </div>
-
-                            <div class="otp-inputs" id="otpInputs" dir="ltr">
-                                <input
-                                    type="text"
-                                    class="otp-box"
-                                    inputmode="numeric"
-                                    maxlength="1"
-                                    autocomplete="one-time-code"
-                                />
-                                <input
-                                    type="text"
-                                    class="otp-box"
-                                    inputmode="numeric"
-                                    maxlength="1"
-                                />
-                                <input
-                                    type="text"
-                                    class="otp-box"
-                                    inputmode="numeric"
-                                    maxlength="1"
-                                />
-                                <input
-                                    type="text"
-                                    class="otp-box"
-                                    inputmode="numeric"
-                                    maxlength="1"
-                                />
-                                <input
-                                    type="text"
-                                    class="otp-box"
-                                    inputmode="numeric"
-                                    maxlength="1"
-                                />
-                            </div>
-
-                            <div class="otp-timer-row">
-                                <span class="otp-timer" id="otpTimer"
-                                    ><i class="ti ti-clock"></i> ۰۲:۰۰</span
-                                >
-                                <button
-                                    type="button"
-                                    class="otp-resend"
-                                    id="otpResend"
-                                    disabled
-                                >
-                                    ارسال مجدد کد
-                                </button>
-                            </div>
-
-                            <button
-                                type="submit"
-                                class="auth-submit"
-                                id="otpSubmitBtn"
-                            >
-                                تایید و تکمیل ثبت‌نام
-                                <i class="ti ti-arrow-left"></i>
-                            </button>
-                        </form>
-
-                        <!-- Success view -->
-                        <div class="auth-form" id="success">
-                            <div class="auth-success">
-                                <div class="auth-success__icon">
-                                    <i class="ti ti-check"></i>
-                                </div>
-                                <h2 id="successTitle">
-                                    عضویت شما با موفقیت تکمیل شد!
-                                </h2>
-                                <p id="successDesc">
-                                    به خانواده غباس خوش آمدید 🎉 اکنون می‌توانید
-                                    خریدتان را شروع کنید.
-                                </p>
-                                <a
-                                    href="index.html"
-                                    class="auth-submit"
-                                    id="successLink"
-                                    >رفتن به فروشگاه
-                                    <i class="ti ti-arrow-left"></i
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Register form -->
+            <form class="auth-form" id="register" onsubmit="return false;">
+              <div class="auth-head">
+                <div class="auth-head__icon">
+                  <i class="ti ti-user-plus"></i>
                 </div>
-            </section>
-        </main>
+                <h2>ثبت‌نام در غباس</h2>
+                <p>چند قدم تا خریدی آسان و سریع فاصله دارید</p>
+              </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container footer__grid">
-                <div class="footer__about">
-                    <div class="footer__logo">
-                        <span class="logo__mark"
-                            ><img
-                                src="assets/images/logo.png"
-                                alt="لوگو غباس"
-                                onerror="
-                                    this.style.display = 'none';
-                                    this.parentElement.innerHTML =
-                                        '<i class=\'ti ti-bolt\'></i>';
-                                "
-                        /></span>
-                        <span
-                            class="logo__text"
-                            style="
-                                background: var(--grad);
-                                -webkit-background-clip: text;
-                                background-clip: text;
-                                color: transparent;
-                            "
-                            >غباس</span
-                        >
-                    </div>
-                    <p>
-                        غباس، مرجع تخصصی فروش گوشی موبایل و لوازم جانبی اصل با
-                        گارانتی معتبر و ارسال سریع به سراسر ایران.
-                    </p>
-                    <div class="footer__socials">
-                        <a href="#" aria-label="اینستاگرام"
-                            ><i class="ti ti-brand-instagram"></i
-                        ></a>
-                        <a href="#" aria-label="تلگرام"
-                            ><i class="ti ti-brand-telegram"></i
-                        ></a>
-                        <a href="#" aria-label="واتس‌اپ"
-                            ><i class="ti ti-brand-whatsapp"></i
-                        ></a>
-                    </div>
+              <div class="field">
+                <label for="reg-name">نام و نام خانوادگی</label>
+                <div class="input-wrap">
+                  <i class="ti ti-user"></i>
+                  <input
+                    type="text"
+                    id="reg-name"
+                    placeholder="نام کامل خود را وارد کنید"
+                  />
                 </div>
-                <div>
-                    <h4>دسترسی سریع</h4>
-                    <ul>
-                        <li><a href="index.html">صفحه اصلی</a></li>
-                        <li><a href="products.html">محصولات</a></li>
-                        <li><a href="about.html">درباره ما</a></li>
-                        <li><a href="contact.html">تماس با ما</a></li>
-                        <li><a href="blog.html">مجله غباس</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>حساب کاربری</h4>
-                    <ul>
-                        <li><a href="login.html">ورود / ثبت‌نام</a></li>
-                        <li><a href="profile.html">پروفایل من</a></li>
-                        <li><a href="orders.html">سفارش‌های من</a></li>
-                        <li><a href="wishlist.html">علاقه‌مندی‌ها</a></li>
-                        <li><a href="cart.html">سبد خرید</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>راهنما</h4>
-                    <ul>
-                        <li><a href="faq.html">پرسش‌های متداول</a></li>
-                        <li><a href="#">شرایط و قوانین</a></li>
-                        <li><a href="#">حریم خصوصی</a></li>
-                        <li><a href="#">راهنمای خرید</a></li>
-                        <li><a href="#">گارانتی و مرجوعی</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>ارتباط با ما</h4>
-                    <ul>
-                        <li><i class="ti ti-map-pin"></i> تهران، سعادت‌آباد</li>
-                        <li><i class="ti ti-phone"></i> ۰۲۱-۱۲۳۴۵۶۷۸</li>
-                        <li><i class="ti ti-mail"></i> support@ghabos.ir</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="container footer__bottom">
-                <span>© ۱۴۰۵ غباس - تمامی حقوق محفوظ است.</span>
-                <div class="footer__payments">
-                    <i class="ti ti-credit-card"></i>
-                    <i class="ti ti-shield-check"></i>
-                    <i class="ti ti-truck-delivery"></i>
-                </div>
-            </div>
-        </footer>
+              </div>
 
-        <!-- Mobile bottom nav -->
-        <nav class="bottom-nav">
-            <div class="bottom-nav__row">
-                <a href="index.html"><i class="ti ti-home"></i> خانه</a>
-                <a href="categories.html"
-                    ><i class="ti ti-category"></i> دسته‌ها</a
+              <div class="field">
+                <label for="reg-phone">شماره موبایل</label>
+                <div class="input-wrap">
+                  <i class="ti ti-device-mobile"></i>
+                  <input
+                    type="tel"
+                    id="reg-phone"
+                    placeholder="09xxxxxxxxx"
+                    inputmode="numeric"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="reg-pass">رمز عبور</label>
+                <div class="input-wrap">
+                  <i class="ti ti-lock"></i>
+                  <input
+                    type="password"
+                    id="reg-pass"
+                    placeholder="یک رمز عبور امن انتخاب کنید"
+                  />
+                  <button type="button" class="toggle-pass" data-for="reg-pass">
+                    <i class="ti ti-eye"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="field-row">
+                <label class="checkbox">
+                  <input type="checkbox" /> با
+                  <a href="#">قوانین و مقررات</a> غباس موافقم
+                </label>
+              </div>
+
+              <button type="submit" class="auth-submit" id="registerSubmitBtn">
+                ثبت‌نام و ادامه <i class="ti ti-arrow-left"></i>
+              </button>
+
+              <div class="auth-divider">یا ثبت‌نام با</div>
+              <div class="auth-socials">
+                <button type="button">
+                  <i class="ti ti-brand-google"></i> گوگل
+                </button>
+                <button type="button" id="registerOtpBtn">
+                  <i class="ti ti-message"></i> پیامک
+                </button>
+              </div>
+
+              <div class="auth-switch">
+                قبلاً ثبت‌نام کرده‌اید؟
+                <button type="button" data-target="login">
+                  ورود به حساب کاربری
+                </button>
+              </div>
+            </form>
+
+            <!-- OTP verification form -->
+            <form class="auth-form" id="otp" onsubmit="return false;">
+              <div class="otp-phone-box">
+                <p>
+                  برای شماره همراه
+                  <b id="otpPhoneNumber" dir="ltr">۰۹xxxxxxxxx</b> کد تایید
+                  ارسال گردید
+                </p>
+                <button type="button" class="otp-edit-btn" id="otpEditBtn">
+                  <i class="ti ti-edit"></i> ویرایش شماره همراه
+                </button>
+              </div>
+
+              <div class="auth-head" style="margin-top: 28px">
+                <div class="auth-head__icon">
+                  <i class="ti ti-shield-lock"></i>
+                </div>
+                <h2>کد فعال‌سازی ارسال شده را وارد کنید</h2>
+                <p>کد ۵ رقمی به شماره همراه شما پیامک شد</p>
+              </div>
+
+              <div class="otp-inputs" id="otpInputs" dir="ltr">
+                <input
+                  type="text"
+                  class="otp-box"
+                  inputmode="numeric"
+                  maxlength="1"
+                  autocomplete="one-time-code"
+                />
+                <input
+                  type="text"
+                  class="otp-box"
+                  inputmode="numeric"
+                  maxlength="1"
+                />
+                <input
+                  type="text"
+                  class="otp-box"
+                  inputmode="numeric"
+                  maxlength="1"
+                />
+                <input
+                  type="text"
+                  class="otp-box"
+                  inputmode="numeric"
+                  maxlength="1"
+                />
+                <input
+                  type="text"
+                  class="otp-box"
+                  inputmode="numeric"
+                  maxlength="1"
+                />
+              </div>
+
+              <div class="otp-timer-row">
+                <span class="otp-timer" id="otpTimer"
+                  ><i class="ti ti-clock"></i> ۰۲:۰۰</span
                 >
-                <a href="cart.html" class="center"
-                    ><i class="ti ti-shopping-bag"></i
-                    ><span class="badge">۳</span></a
+                <button
+                  type="button"
+                  class="otp-resend"
+                  id="otpResend"
+                  disabled
                 >
-                <a href="wishlist.html"
-                    ><i class="ti ti-heart"></i> علاقه‌مندی</a
-                >
-                <a href="profile.html" class="active"
-                    ><i class="ti ti-user"></i> پروفایل</a
-                >
+                  ارسال مجدد کد
+                </button>
+              </div>
+
+              <button type="submit" class="auth-submit" id="otpSubmitBtn">
+                تایید و تکمیل ثبت‌نام <i class="ti ti-arrow-left"></i>
+              </button>
+            </form>
+
+            <!-- Success view -->
+            <div class="auth-form" id="success">
+              <div class="auth-success">
+                <div class="auth-success__icon">
+                  <i class="ti ti-check"></i>
+                </div>
+                <h2 id="successTitle">عضویت شما با موفقیت تکمیل شد!</h2>
+                <p id="successDesc">
+                  به خانواده غباس خوش آمدید 🎉 اکنون می‌توانید خریدتان را شروع
+                  کنید.
+                </p>
+                <a href="index.html" class="auth-submit" id="successLink"
+                  >رفتن به فروشگاه <i class="ti ti-arrow-left"></i
+                ></a>
+              </div>
             </div>
-        </nav>
+          </div>
+        </div>
+      </section>
+    </main>
 
-        <script>
-            // Tab switching
-            document.querySelectorAll("[data-target]").forEach((el) => {
-                el.addEventListener("click", () => {
-                    const target = el.getAttribute("data-target");
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__about">
+          <div class="footer__logo">
+            <span class="logo__mark"
+              ><img loading="lazy" decoding="async"
+                src="assets/images/logo.png"
+                alt="لوگو غباس"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.innerHTML = '<i class=\'ti ti-bolt\'></i>';
+                "
+            /></span>
+            <span
+              class="logo__text"
+              style="
+                background: var(--grad);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+              "
+              >غباس</span
+            >
+          </div>
+          <p>
+            غباس، مرجع تخصصی فروش گوشی موبایل و لوازم جانبی اصل با گارانتی معتبر
+            و ارسال سریع به سراسر ایران.
+          </p>
+          <div class="footer__socials">
+            <a href="#" aria-label="اینستاگرام"
+              ><i class="ti ti-brand-instagram"></i
+            ></a>
+            <a href="#" aria-label="تلگرام"
+              ><i class="ti ti-brand-telegram"></i
+            ></a>
+            <a href="#" aria-label="واتس‌اپ"
+              ><i class="ti ti-brand-whatsapp"></i
+            ></a>
+          </div>
+        </div>
+        <div>
+          <h4>دسترسی سریع</h4>
+          <ul>
+            <li><a href="index.html">صفحه اصلی</a></li>
+            <li><a href="products.html">محصولات</a></li>
+            <li><a href="about.html">درباره ما</a></li>
+            <li><a href="contact.html">تماس با ما</a></li>
+            <li><a href="blog.html">مجله غباس</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>حساب کاربری</h4>
+          <ul>
+            <li><a href="login.html">ورود / ثبت‌نام</a></li>
+            <li><a href="profile.html">پروفایل من</a></li>
+            <li><a href="orders.html">سفارش‌های من</a></li>
+            <li><a href="wishlist.html">علاقه‌مندی‌ها</a></li>
+            <li><a href="cart.html">سبد خرید</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>راهنما</h4>
+          <ul>
+            <li><a href="faq.html">پرسش‌های متداول</a></li>
+            <li><a href="#">شرایط و قوانین</a></li>
+            <li><a href="#">حریم خصوصی</a></li>
+            <li><a href="#">راهنمای خرید</a></li>
+            <li><a href="#">گارانتی و مرجوعی</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>ارتباط با ما</h4>
+          <ul>
+            <li><i class="ti ti-map-pin"></i> تهران، سعادت‌آباد</li>
+            <li><i class="ti ti-phone"></i> ۰۲۱-۱۲۳۴۵۶۷۸</li>
+            <li><i class="ti ti-mail"></i> support@ghabos.ir</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer__bottom">
+        <span>© ۱۴۰۵ غباس - تمامی حقوق محفوظ است.</span>
+        <div class="footer__payments">
+          <i class="ti ti-credit-card"></i>
+          <i class="ti ti-shield-check"></i>
+          <i class="ti ti-truck-delivery"></i>
+        </div>
+      </div>
+    </footer>
 
-                    document
-                        .querySelectorAll(".auth-tab")
-                        .forEach((t) => t.classList.remove("active"));
-                    document
-                        .querySelectorAll(".auth-form")
-                        .forEach((f) => f.classList.remove("active"));
+    <!-- Mobile bottom nav -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav__row">
+        <a href="index.html"><i class="ti ti-home"></i> خانه</a>
+        <a href="categories.html"><i class="ti ti-category"></i> دسته‌ها</a>
+        <a href="cart.html" class="center"
+          ><i class="ti ti-shopping-bag"></i><span class="badge">۳</span></a
+        >
+        <a href="wishlist.html"><i class="ti ti-heart"></i> علاقه‌مندی</a>
+        <a href="profile.html" class="active"
+          ><i class="ti ti-user"></i> پروفایل</a
+        >
+      </div>
+    </nav>
 
-                    document
-                        .querySelector(`.auth-tab[data-target="${target}"]`)
-                        .classList.add("active");
-                    document.getElementById(target).classList.add("active");
-                });
-            });
-
-            // Show/hide password
-            document.querySelectorAll(".toggle-pass").forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    const input = document.getElementById(btn.dataset.for);
-                    const icon = btn.querySelector("i");
-                    if (input.type === "password") {
-                        input.type = "text";
-                        icon.className = "ti ti-eye-off";
-                    } else {
-                        input.type = "password";
-                        icon.className = "ti ti-eye";
-                    }
-                });
-            });
-
-            // ===================== OTP verification step =====================
-            const faDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-            function toFa(str) {
-                return String(str).replace(/[0-9]/g, (d) => faDigits[d]);
-            }
-
-            const authCard = document.querySelector(".auth-card");
-            const otpBoxes = Array.from(document.querySelectorAll(".otp-box"));
-            const otpTimerEl = document.getElementById("otpTimer");
-            const otpResendBtn = document.getElementById("otpResend");
-
-            let otpContext = "register"; // 'register' | 'login'
-            let otpTimerInterval = null;
-            const OTP_DURATION = 120; // seconds
-
-            function showForm(id) {
-                document
-                    .querySelectorAll(".auth-form")
-                    .forEach((f) => f.classList.remove("active"));
-                document.getElementById(id).classList.add("active");
-            }
-
-            function setOtpBoxesDisabled(disabled) {
-                otpBoxes.forEach((b) => {
-                    b.disabled = disabled;
-                    b.style.opacity = disabled ? "0.45" : "";
-                    b.style.cursor = disabled ? "not-allowed" : "";
-                    if (disabled) b.style.borderColor = "";
-                });
-            }
-
-            function startOtpTimer() {
-                clearInterval(otpTimerInterval);
-                let remaining = OTP_DURATION;
-                otpResendBtn.disabled = true;
-                setOtpBoxesDisabled(false);
-
-                const render = () => {
-                    const m = Math.floor(remaining / 60);
-                    const s = remaining % 60;
-                    otpTimerEl.innerHTML = `<i class="ti ti-clock"></i> ${toFa(String(m).padStart(2, "0"))}:${toFa(String(s).padStart(2, "0"))}`;
-                    otpTimerEl.classList.remove("warn", "danger");
-                    if (remaining <= 20) otpTimerEl.classList.add("danger");
-                    else if (remaining <= 60) otpTimerEl.classList.add("warn");
-                };
-                render();
-
-                otpTimerInterval = setInterval(() => {
-                    remaining--;
-                    render();
-                    if (remaining <= 0) {
-                        clearInterval(otpTimerInterval);
-                        otpResendBtn.disabled = false;
-                        setOtpBoxesDisabled(true);
-                        otpTimerEl.innerHTML = `<i class="ti ti-clock"></i> کد منقضی شد`;
-                        otpTimerEl.classList.add("danger");
-                    }
-                }, 1000);
-            }
-
-            function resetOtpBoxes() {
-                otpBoxes.forEach((b) => {
-                    b.value = "";
-                    b.disabled = false;
-                    b.style.opacity = "";
-                    b.style.cursor = "";
-                    b.classList.remove("filled");
-                    b.style.borderColor = "";
-                });
-            }
-
-            function goToOtp(phone, context) {
-                const phoneClean = (phone || "").trim();
-                if (phoneClean.length < 10) {
-                    const targetInput =
-                        context === "register"
-                            ? document.getElementById("reg-phone")
-                            : document.getElementById("login-phone");
-                    targetInput.focus();
-                    targetInput.style.borderColor = "var(--c-red)";
-                    setTimeout(() => {
-                        targetInput.style.borderColor = "";
-                    }, 1200);
-                    return;
-                }
-
-                otpContext = context;
-                document.getElementById("otpPhoneNumber").textContent =
-                    toFa(phoneClean);
-                authCard.classList.add("no-tabs");
-                showForm("otp");
-
-                resetOtpBoxes();
-                otpBoxes[0].focus();
-                startOtpTimer();
-            }
-
-            function goBackFromOtp() {
-                clearInterval(otpTimerInterval);
-                authCard.classList.remove("no-tabs");
-
-                document
-                    .querySelectorAll(".auth-tab")
-                    .forEach((t) => t.classList.remove("active"));
-
-                if (otpContext === "register") {
-                    document
-                        .querySelector('.auth-tab[data-target="register"]')
-                        .classList.add("active");
-                    showForm("register");
-                } else {
-                    document
-                        .querySelector('.auth-tab[data-target="login"]')
-                        .classList.add("active");
-                    showForm("login");
-                }
-            }
-
-            // Triggers that open the OTP step
-            document
-                .getElementById("registerSubmitBtn")
-                .addEventListener("click", () => {
-                    goToOtp(
-                        document.getElementById("reg-phone").value,
-                        "register",
-                    );
-                });
-            document
-                .getElementById("registerOtpBtn")
-                .addEventListener("click", () => {
-                    goToOtp(
-                        document.getElementById("reg-phone").value,
-                        "register",
-                    );
-                });
-            document
-                .getElementById("loginOtpBtn")
-                .addEventListener("click", () => {
-                    goToOtp(
-                        document.getElementById("login-phone").value,
-                        "login",
-                    );
-                });
-
-            // Edit phone number -> go back without refresh
-            document
-                .getElementById("otpEditBtn")
-                .addEventListener("click", goBackFromOtp);
-
-            // Resend code
-            otpResendBtn.addEventListener("click", () => {
-                if (otpResendBtn.disabled) return;
-                resetOtpBoxes();
-                otpBoxes[0].focus();
-                startOtpTimer();
-            });
-
-            // OTP input behavior: auto-advance, backspace, paste
-            otpBoxes.forEach((box, idx) => {
-                box.addEventListener("input", () => {
-                    const val = box.value.replace(/[^0-9۰-۹]/g, "").slice(-1);
-                    box.value = val;
-                    box.classList.toggle("filled", !!val);
-                    box.style.borderColor = "";
-                    if (val && idx < otpBoxes.length - 1)
-                        otpBoxes[idx + 1].focus();
-                });
-
-                box.addEventListener("keydown", (e) => {
-                    if (e.key === "Backspace" && !box.value && idx > 0) {
-                        otpBoxes[idx - 1].focus();
-                        otpBoxes[idx - 1].value = "";
-                        otpBoxes[idx - 1].classList.remove("filled");
-                    }
-                });
-
-                box.addEventListener("paste", (e) => {
-                    e.preventDefault();
-                    const text = (e.clipboardData || window.clipboardData)
-                        .getData("text")
-                        .replace(/[^0-9۰-۹]/g, "");
-                    text.split("").forEach((ch, i) => {
-                        if (otpBoxes[idx + i]) {
-                            otpBoxes[idx + i].value = ch;
-                            otpBoxes[idx + i].classList.add("filled");
-                        }
-                    });
-                    const nextIdx = Math.min(
-                        idx + text.length,
-                        otpBoxes.length - 1,
-                    );
-                    otpBoxes[nextIdx].focus();
-                });
-            });
-
-            // Submit OTP
-            document.getElementById("otp").addEventListener("submit", (e) => {
-                e.preventDefault();
-                const allFilled = otpBoxes.every((b) => b.value !== "");
-                if (!allFilled) {
-                    otpBoxes.forEach((b) => {
-                        if (!b.value) {
-                            b.style.borderColor = "var(--c-red)";
-                        }
-                    });
-                    return;
-                }
-
-                clearInterval(otpTimerInterval);
-                authCard.classList.add("no-tabs");
-
-                const title = document.getElementById("successTitle");
-                const desc = document.getElementById("successDesc");
-
-                if (otpContext === "register") {
-                    title.textContent = "عضویت شما با موفقیت تکمیل شد!";
-                    desc.textContent =
-                        "به خانواده غباس خوش آمدید 🎉 اکنون می‌توانید خریدتان را شروع کنید.";
-                } else {
-                    title.textContent = "ورود با موفقیت انجام شد!";
-                    desc.textContent = "خوشحالیم که دوباره می‌بینیمت 👋";
-                }
-
-                showForm("success");
-            });
-        </script>
-    </body>
+    
+  
+<script src="js/app.js"></script>
+</body>
 </html>

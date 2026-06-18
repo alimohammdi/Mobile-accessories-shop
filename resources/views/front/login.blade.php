@@ -1,101 +1,14 @@
-<!doctype html>
-<html lang="fa" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ورود | ثبت‌نام - غباس</title>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+@extends('front.layouts.master')
 
-    <link rel="stylesheet" href="style_production_responsive.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css"
-    />
-  
-<link rel="stylesheet" href="css/style.css">
-</head>
-  <body>
-    <!-- Topbar -->
-    <div class="topbar">
-      🎉 جشنواره زمستانی: تا <strong>۵۰٪</strong> تخفیف روی تمام لوازم جانبی
-      موبایل | کد تخفیف: <strong>WINTER2026</strong>
-    </div>
+@section('content')
+ <!-- Topbar -->
+    @include('front/Partials/Topbar/topbar')
 
     <!-- Header -->
-    <header class="header">
-      <div class="container header__row">
-        <a href="index.html" class="logo">
-          <span class="logo__mark"
-            ><img loading="eager" decoding="async" fetchpriority="high"
-              src="assets/images/logo.png"
-              alt="لوگو غباس"
-              onerror="
-                this.style.display = 'none';
-                this.parentElement.innerHTML = '<i class=\'ti ti-bolt\'></i>';
-              "
-          /></span>
-          <span>
-            <span class="logo__text">غباس</span>
-            <span class="logo__sub">GHABOS.IR</span>
-          </span>
-        </a>
-
-        <div class="search">
-          <input
-            type="text"
-            placeholder="جستجوی سراسری در محصولات، برندها و دسته‌بندی‌ها..."
-          />
-          <button aria-label="جستجو"><i class="ti ti-search"></i></button>
-        </div>
-
-        <div class="header__actions">
-          <a href="login.html" class="auth-pill">
-            <i class="ti ti-user"></i>
-            <span>ورود | ثبت‌نام</span>
-          </a>
-          <button
-            class="icon-btn"
-            aria-label="حالت شب"
-            onclick="document.body.classList.toggle('dark')"
-          >
-            <i class="ti ti-moon"></i>
-          </button>
-          <a href="wishlist.html" class="icon-btn" aria-label="علاقه‌مندی‌ها">
-            <i class="ti ti-heart"></i>
-            <span class="badge">۲</span>
-          </a>
-          <a href="cart.html" class="icon-btn cart" aria-label="سبد خرید">
-            <i class="ti ti-shopping-bag"></i>
-            <span class="badge">۳</span>
-          </a>
-        </div>
-      </div>
-
-      <nav class="nav">
-        <div class="container nav__row">
-          <button class="nav__cats" id="openDrawer">
-            <i class="ti ti-menu-2"></i> همه دسته‌بندی‌ها
-          </button>
-          <a href="products.html">پرفروش‌ترین‌ها</a>
-          <a href="products.html?filter=hot" class="nav__hot">شگفت‌انگیزها</a>
-          <a href="products.html">تازه‌های فروشگاه</a>
-          <a href="blog.html">مجله غباس</a>
-          <a href="faq.html">پرسش‌های متداول</a>
-          <div class="nav__spacer"></div>
-          <div class="nav__delivery">
-            <i class="ti ti-map-pin"></i>
-            ارسال به: <b>تهران، سعادت‌آباد</b>
-          </div>
-        </div>
-      </nav>
+    @include('front/Partials/Header/header')
     </header>
 
-    <main>
+<main>
       <!-- Auth -->
       <section class="container auth-page">
         <div class="auth-card">
@@ -182,7 +95,7 @@
               </div>
             </form>
 
-            <!-- Register form -->
+                     {{--  Register form  --}}
             <form class="auth-form" id="register" onsubmit="return false;">
               <div class="auth-head">
                 <div class="auth-head__icon">
@@ -261,7 +174,7 @@
               </div>
             </form>
 
-            <!-- OTP verification form -->
+           {{--     OTP verification form  --}}
             <form class="auth-form" id="otp" onsubmit="return false;">
               <div class="otp-phone-box">
                 <p>
@@ -335,7 +248,7 @@
               </button>
             </form>
 
-            <!-- Success view -->
+                         {{--  Success view  --}}
             <div class="auth-form" id="success">
               <div class="auth-success">
                 <div class="auth-success__icon">
@@ -356,113 +269,8 @@
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container footer__grid">
-        <div class="footer__about">
-          <div class="footer__logo">
-            <span class="logo__mark"
-              ><img loading="lazy" decoding="async"
-                src="assets/images/logo.png"
-                alt="لوگو غباس"
-                onerror="
-                  this.style.display = 'none';
-                  this.parentElement.innerHTML = '<i class=\'ti ti-bolt\'></i>';
-                "
-            /></span>
-            <span
-              class="logo__text"
-              style="
-                background: var(--grad);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-              "
-              >غباس</span
-            >
-          </div>
-          <p>
-            غباس، مرجع تخصصی فروش گوشی موبایل و لوازم جانبی اصل با گارانتی معتبر
-            و ارسال سریع به سراسر ایران.
-          </p>
-          <div class="footer__socials">
-            <a href="#" aria-label="اینستاگرام"
-              ><i class="ti ti-brand-instagram"></i
-            ></a>
-            <a href="#" aria-label="تلگرام"
-              ><i class="ti ti-brand-telegram"></i
-            ></a>
-            <a href="#" aria-label="واتس‌اپ"
-              ><i class="ti ti-brand-whatsapp"></i
-            ></a>
-          </div>
-        </div>
-        <div>
-          <h4>دسترسی سریع</h4>
-          <ul>
-            <li><a href="index.html">صفحه اصلی</a></li>
-            <li><a href="products.html">محصولات</a></li>
-            <li><a href="about.html">درباره ما</a></li>
-            <li><a href="contact.html">تماس با ما</a></li>
-            <li><a href="blog.html">مجله غباس</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>حساب کاربری</h4>
-          <ul>
-            <li><a href="login.html">ورود / ثبت‌نام</a></li>
-            <li><a href="profile.html">پروفایل من</a></li>
-            <li><a href="orders.html">سفارش‌های من</a></li>
-            <li><a href="wishlist.html">علاقه‌مندی‌ها</a></li>
-            <li><a href="cart.html">سبد خرید</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>راهنما</h4>
-          <ul>
-            <li><a href="faq.html">پرسش‌های متداول</a></li>
-            <li><a href="#">شرایط و قوانین</a></li>
-            <li><a href="#">حریم خصوصی</a></li>
-            <li><a href="#">راهنمای خرید</a></li>
-            <li><a href="#">گارانتی و مرجوعی</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>ارتباط با ما</h4>
-          <ul>
-            <li><i class="ti ti-map-pin"></i> تهران، سعادت‌آباد</li>
-            <li><i class="ti ti-phone"></i> ۰۲۱-۱۲۳۴۵۶۷۸</li>
-            <li><i class="ti ti-mail"></i> support@ghabos.ir</li>
-          </ul>
-        </div>
-      </div>
-      <div class="container footer__bottom">
-        <span>© ۱۴۰۵ غباس - تمامی حقوق محفوظ است.</span>
-        <div class="footer__payments">
-          <i class="ti ti-credit-card"></i>
-          <i class="ti ti-shield-check"></i>
-          <i class="ti ti-truck-delivery"></i>
-        </div>
-      </div>
-    </footer>
+  @include('front.partials.footer.simpleFooter')
 
-    <!-- Mobile bottom nav -->
-    <nav class="bottom-nav">
-      <div class="bottom-nav__row">
-        <a href="index.html"><i class="ti ti-home"></i> خانه</a>
-        <a href="categories.html"><i class="ti ti-category"></i> دسته‌ها</a>
-        <a href="cart.html" class="center"
-          ><i class="ti ti-shopping-bag"></i><span class="badge">۳</span></a
-        >
-        <a href="wishlist.html"><i class="ti ti-heart"></i> علاقه‌مندی</a>
-        <a href="profile.html" class="active"
-          ><i class="ti ti-user"></i> پروفایل</a
-        >
-      </div>
-    </nav>
+  <script src="{{ asset('front/js/login.js') }}"></script>
+@endsection
 
-    
-  
-<script src="js/app.js"></script>
-</body>
-</html>
