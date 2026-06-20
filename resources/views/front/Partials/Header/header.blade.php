@@ -1,10 +1,66 @@
 
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="فروشگاه موبایل و لوازم جانبی غباس با بهترین قیمت و ارسال سریع"
+    />
+    <meta property="og:title" content="غباس | فروشگاه موبایل و لوازم جانبی" />
+    <meta
+      property="og:description"
+      content="خرید لوازم جانبی موبایل با بهترین قیمت"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="favicon.ico" />
+    <title>غباس | فروشگاه موبایل و لوازم جانبی</title>
+    @verbatim
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "name": "GHABOS",
+        "url": "https://ghabos.ir",
+        "description": "غباس، مرجع تخصصی فروش گوشی موبایل و لوازم جانبی اصل",
+        "telephone": "021-12345678",
+        "email": "support@ghabos.ir",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "تهران",
+          "addressRegion": "سعادت‌آباد",
+          "addressCountry": "IR"
+        }
+      }
+    </script>
+    <script src="{{ asset('front/js/ghabos.js') }}"></script>
+    @endverbatim
+
+    <!-- Performance: warm up connections to external origins early -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
+    <link rel="stylesheet" href="{{  asset('front/css/style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css"
+    />
+  </head>
+  <body>
+
  <header class="header">
       <div class="container header__row">
-        <a href="index.html" class="logo">
+        <a href="{{ route('home') }}" class="logo">
           <span class="logo__mark"
             ><img loading="eager" decoding="async" fetchpriority="high"
-              src="assets/images/logo.png"
+              src="{{ asset('front/images/ghabos-logo.png') }}"
               alt="لوگو غباس"
               onerror="
                 this.style.display = 'none';
@@ -12,7 +68,7 @@
               "
           /></span>
           <span>
-            <span class="logo__text">غباس</span>
+            <span class="logo__text">قابوس</span>
             <span class="logo__sub">GHABOS.IR</span>
           </span>
         </a>
@@ -26,7 +82,7 @@
         </div>
 
         <div class="header__actions">
-          <a href="login.html" class="auth-pill">
+          <a href="{{  route('login') }}" class="auth-pill">
             <i class="ti ti-user"></i>
             <span>ورود | ثبت‌نام</span>
           </a>

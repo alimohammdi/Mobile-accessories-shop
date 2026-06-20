@@ -4,9 +4,7 @@
  <!-- Topbar -->
     @include('front/Partials/Topbar/topbar')
 
-    <!-- Header -->
     @include('front/Partials/Header/header')
-    </header>
 
 <main>
       <!-- Auth -->
@@ -269,8 +267,8 @@
       </section>
     </main>
 
-  @include('front.partials.footer.simpleFooter')
+   @include('front.partials.footer.simpleFooter')
+<script src="{{ asset('front/js/ghabos.js') }}"></script>
 
-  <script src="{{ asset('front/js/login.js') }}"></script>
 @endsection
 

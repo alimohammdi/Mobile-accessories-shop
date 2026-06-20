@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -12,7 +13,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-         return view('front.index');
+         $brands = Brand::latest()->limit(6)->get();
+         return view('front.index',compact('brands'));
+
     }
     public function loginPage()
     {

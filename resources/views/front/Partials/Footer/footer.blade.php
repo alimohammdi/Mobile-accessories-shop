@@ -86,5 +86,6 @@
         </div>
       </div>
    <script src="{{  asset('front/js/app.js') }}" defer></script>
+
   </body>
 </html>

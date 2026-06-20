@@ -19,8 +19,11 @@ Route::get('/products/{slug}', [ProductController::class, 'show'])->name('produc
 // Front project
 
 Route::prefix('/')->group(function(){
-      Route::get('home',[IndexController::class,'index'])->name('home');
-      Route::get('login',[IndexController::class,'loginPage']);
-      Route::get('404',[IndexController::class,'notFound']);
-      Route::get('500',[IndexController::class,'errorServer']);
+      Route::get('',[IndexController::class,'index'])->name('home');
+      Route::get('login',[IndexController::class,'loginPage'])->name('login');
+
+
+    //   errors page
+      Route::get('404',[IndexController::class,'notFound'])->name('404');
+      Route::get('500',[IndexController::class,'errorServer'])->name('500');
 });
