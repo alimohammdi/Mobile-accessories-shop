@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Front\IndexController;
+use App\Http\Controllers\Front\productController as FrontProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,4 +27,8 @@ Route::prefix('/')->group(function(){
     //   errors page
       Route::get('404',[IndexController::class,'notFound'])->name('404');
       Route::get('500',[IndexController::class,'errorServer'])->name('500');
+
+
+      // product page
+      Route::get('products',[FrontProductController::class,'index'])->name('all-products');
 });

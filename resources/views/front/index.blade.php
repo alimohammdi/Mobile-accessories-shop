@@ -12,7 +12,7 @@
        @include('front.Partials.Banners.hero')
 
       <!-- Categories -->
-
+       @include('front.partials.categories.categories')
       <!-- New products -->
        @include('front.Partials.NewProductsList.products')
 
@@ -27,4 +27,3 @@
 
   @include('front.partials.Footer.footer')
 @endsection
- 

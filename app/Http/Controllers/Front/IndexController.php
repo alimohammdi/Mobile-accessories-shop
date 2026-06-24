@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -13,8 +15,10 @@ class IndexController extends Controller
      */
     public function index()
     {
+        $products = Product::latest()->limit(5)->get();
+        $category = Category::latest()->limit(7)->get();
          $brands = Brand::latest()->limit(6)->get();
-         return view('front.index',compact('brands'));
+         return view('front.index',compact('brands','category','products'));
 
     }
     public function loginPage()

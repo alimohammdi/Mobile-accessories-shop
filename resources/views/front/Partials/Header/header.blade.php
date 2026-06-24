@@ -44,6 +44,7 @@
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
     <link rel="stylesheet" href="{{  asset('front/css/style.css') }}" />
+    <link rel="stylesheet" href="{{  asset('front/css/product_style.css') }}" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
