@@ -29,6 +29,10 @@ Route::prefix('/')->group(function(){
       Route::get('500',[IndexController::class,'errorServer'])->name('500');
 
 
+    // single page
+     Route::get('about',[IndexController::class,'about'])->name('about');
+
       // product page
       Route::get('products',[FrontProductController::class,'index'])->name('all-products');
+      Route::get('/products/{slug}', [FrontProductController::class, 'show'])->name('product-show');
 });

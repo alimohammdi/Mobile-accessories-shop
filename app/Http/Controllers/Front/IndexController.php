@@ -21,16 +21,22 @@ class IndexController extends Controller
          return view('front.index',compact('brands','category','products'));
 
     }
+
+    // Single Pages
     public function loginPage()
     {
          return view('front.login');
     }
+    public function about(){
+        return view('front.about');
+    }
     public function  notFound(){
         return view('front.404');
       }
+
       public function  errorServer(){
         return view('front.500');
-      }
+     }
 
 
     /**

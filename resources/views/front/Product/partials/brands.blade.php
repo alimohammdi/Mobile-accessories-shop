@@ -1,4 +1,4 @@
-<div class="filter-box">
+{{--  <div class="filter-box">
               <div class="filter-box__head">
                 <span class="filter-box__title">
                   <i class="ti ti-building-store"></i> برند
@@ -37,4 +37,20 @@
                   <span class="brand-check__count">۱۴</span>
                 </label>
               </div>
+            </div>  --}}
+
+             {{-- برند --}}
+        <div class="filter-box">
+            <div class="filter-box__title"><i class="ti ti-building-store"></i> برند</div>
+            <div class="brand-checks">
+                @foreach($brands as $brand)
+                    <label class="brand-check">
+                        <input type="checkbox" name="brand[]" value="{{ $brand->slug }}"
+                            {{ in_array($brand->slug, (array)request('brand', [])) ? 'checked' : '' }}
+                            onchange="this.form.submit()" />
+                        <span class="brand-check__label">{{ $brand->name }}</span>
+                        <span class="brand-check__count">{{ $brand->products_count }}</span>
+                    </label>
+                @endforeach
             </div>
+        </div>

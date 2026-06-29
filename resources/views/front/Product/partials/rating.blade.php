@@ -1,4 +1,4 @@
-<div class="filter-box">
+{{--  <div class="filter-box">
               <div class="filter-box__head">
                 <span class="filter-box__title">
                   <i class="ti ti-star"></i> امتیاز
@@ -21,4 +21,22 @@
                   <span class="rating-item__label"><b>۲</b> و بالاتر</span>
                 </label>
               </div>
+            </div>  --}}
+  {{-- امتیاز --}}
+        <div class="filter-box">
+            <div class="filter-box__title"><i class="ti ti-star"></i> امتیاز</div>
+            <div class="rating-filter">
+                @foreach([4, 3, 2] as $star)
+                    <label class="rating-item">
+                        <input type="radio" name="rating" value="{{ $star }}"
+                            {{ request('rating') == $star ? 'checked' : '' }}
+                            onchange="this.form.submit()" />
+                        <span class="rating-item__stars">
+                            @for($i = 0; $i < 5; $i++)
+                                {{ $i < $star ? '★' : '☆' }}
+                            @endfor
+                        </span>
+                        <span class="rating-item__label"><b>{{ $star }}</b> و بالاتر</span>
+                    </label>
+                @endforeach
             </div>

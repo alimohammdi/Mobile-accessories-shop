@@ -85,6 +85,8 @@
           <i class="ti ti-truck-delivery"></i>
         </div>
       </div>
+
+
    <script src="{{  asset('front/js/app.js') }}" defer></script>
 
   </body>

@@ -6,24 +6,6 @@
  * ================================================================
  */
 
-/**
- * تبدیل ارقام انگلیسی به فارسی
- * @param {number|string} n
- * @returns {string}
- */
-function fa(n) {
-    return String(n).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
-}
-
-/**
- * فرمت عدد با جداکننده هزارتایی + تبدیل به فارسی
- * @param {number} n
- * @returns {string}
- */
-function fmt(n) {
-    return fa(n.toLocaleString("fa-IR"));
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     /* ================================================================
      ۱. LAZY LOADING — بارگذاری تنبل تصاویر
@@ -34,20 +16,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ================================================================
      ۲. DARK MODE — حالت تاریک
+     وضعیت تم را از localStorage می‌خواند و اعمال می‌کند
+     با کلیک روی دکمه themeToggle بین تاریک/روشن سوئیچ می‌کند
   ================================================================ */
-    const themeBtn = document.getElementById("themeToggle");
+    document.addEventListener("DOMContentLoaded", () => {
+        const themeBtn = document.getElementById("themeToggle");
 
-    if (localStorage.getItem("ghabos-theme") === "dark") {
-        document.body.classList.add("dark");
-        if (themeBtn) themeBtn.querySelector("i").className = "ti ti-sun";
-    }
+        // اعمال تم ذخیره شده
+        // if (localStorage.getItem("theme") === "dark") {
+        //     document.body.classList.add("dark");
+        // }
 
-    themeBtn?.addEventListener("click", () => {
-        const isDark = document.body.classList.toggle("dark");
-        themeBtn.querySelector("i").className = isDark
-            ? "ti ti-sun"
-            : "ti ti-moon";
-        localStorage.setItem("ghabos-theme", isDark ? "dark" : "light");
+        if (themeBtn) {
+            themeBtn.addEventListener("click", () => {
+                document.body.classList.toggle("dark");
+
+                localStorage.setItem(
+                    "theme",
+                    document.body.classList.contains("dark") ? "dark" : "light",
+                );
+            });
+        }
     });
 
     /* ================================================================
@@ -929,86 +918,79 @@ document.addEventListener("DOMContentLoaded", function () {
             .join("");
     }
 
+    /* ---- اجرا ---- */
+    renderPageCart();
+    renderSuggested();
+
+    /* ---- dark mode toggle (هم‌راستا با app.js) ---- */
+    const themeToggle = document.getElementById("themeToggle");
+    const saved = localStorage.getItem("ghabos-theme");
+    if (saved === "dark") {
+        document.body.classList.add("dark");
+        themeToggle && (themeToggle.querySelector("i").className = "ti ti-sun");
+    }
+    themeToggle?.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark");
+        themeToggle.querySelector("i").className = isDark
+            ? "ti ti-sun"
+            : "ti ti-moon";
+        localStorage.setItem("ghabos-theme", isDark ? "dark" : "light");
+    });
+
     //  product manage js
-    document.addEventListener("DOMContentLoaded", () => {
-        // Dark mode
-        const themeToggle = document.getElementById("themeToggle");
-        const savedTheme = localStorage.getItem("ghabos-theme");
-        if (savedTheme === "dark") {
-            document.body.classList.add("dark");
-            if (themeToggle)
-                themeToggle.querySelector("i").className = "ti ti-sun";
-        }
-        themeToggle?.addEventListener("click", () => {
-            const isDark = document.body.classList.toggle("dark");
-            themeToggle.querySelector("i").className = isDark
-                ? "ti ti-sun"
-                : "ti ti-moon";
-            localStorage.setItem("ghabos-theme", isDark ? "dark" : "light");
+
+    // Mobile filter sidebar toggle
+    const filterToggle = document.getElementById("filterToggle");
+    const filterSidebar = document.getElementById("filterSidebar");
+    const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+    filterToggle.addEventListener("click", () => {
+        filterSidebar.classList.toggle("open");
+        sidebarOverlay.classList.toggle("open");
+    });
+    sidebarOverlay.addEventListener("click", () => {
+        filterSidebar.classList.remove("open");
+        sidebarOverlay.classList.remove("open");
+    });
+
+    // Category filter
+    document.querySelectorAll(".cat-filter__item").forEach((item) => {
+        item.addEventListener("click", () => {
+            document
+                .querySelectorAll(".cat-filter__item")
+                .forEach((i) => i.classList.remove("active"));
+            item.classList.add("active");
+        });
+    });
+
+    // Quick filter chips
+    document.querySelectorAll(".quick-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+            document
+                .querySelectorAll(".quick-chip")
+                .forEach((c) => c.classList.remove("active"));
+            chip.classList.add("active");
+        });
+    });
+
+    // View toggle
+    const productsGrid = document.getElementById("productsGrid");
+    document
+        .getElementById("gridViewBtn")
+        .addEventListener("click", function () {
+            productsGrid.classList.remove("list-view");
+            this.classList.add("active");
+            document.getElementById("listViewBtn").classList.remove("active");
+        });
+    document
+        .getElementById("listViewBtn")
+        .addEventListener("click", function () {
+            productsGrid.classList.add("list-view");
+            this.classList.add("active");
+            document.getElementById("gridViewBtn").classList.remove("active");
         });
 
-        // Mobile filter sidebar toggle
-        const filterToggle = document.getElementById("filterToggle");
-        const filterSidebar = document.getElementById("filterSidebar");
-        const sidebarOverlay = document.getElementById("sidebarOverlay");
-
-        filterToggle?.addEventListener("click", () => {
-            filterSidebar?.classList.toggle("open");
-            sidebarOverlay?.classList.toggle("open");
-        });
-        sidebarOverlay?.addEventListener("click", () => {
-            filterSidebar?.classList.remove("open");
-            sidebarOverlay?.classList.remove("open");
-        });
-
-        // Category filter
-        document.querySelectorAll(".cat-filter__item").forEach((item) => {
-            item.addEventListener("click", () => {
-                document
-                    .querySelectorAll(".cat-filter__item")
-                    .forEach((i) => i.classList.remove("active"));
-                item.classList.add("active");
-            });
-        });
-
-        // Quick filter chips
-        document.querySelectorAll(".quick-chip").forEach((chip) => {
-            chip.addEventListener("click", () => {
-                document
-                    .querySelectorAll(".quick-chip")
-                    .forEach((c) => c.classList.remove("active"));
-                chip.classList.add("active");
-            });
-        });
-
-        // View toggle
-        const productsGrid = document.getElementById("productsGrid");
-        document
-            .getElementById("gridViewBtn")
-            ?.addEventListener("click", function () {
-                productsGrid?.classList.remove("list-view");
-                this.classList.add("active");
-                document
-                    .getElementById("listViewBtn")
-                    ?.classList.remove("active");
-            });
-        document
-            .getElementById("listViewBtn")
-            ?.addEventListener("click", function () {
-                productsGrid?.classList.add("list-view");
-                this.classList.add("active");
-                document
-                    .getElementById("gridViewBtn")
-                    ?.classList.remove("active");
-            });
-
-        // Lazy load images
-        document
-            .querySelectorAll("img")
-            .forEach((img) => (img.loading = "lazy"));
-    }); // end DOMContentLoaded
-
-    // ── توابع global — از onclick در HTML صدا زده میشن ──
+    // Add to cart animation
     function addToCart(btn) {
         const orig = btn.innerHTML;
         btn.innerHTML = '<i class="ti ti-check"></i>';
@@ -1030,4 +1012,137 @@ document.addEventListener("DOMContentLoaded", function () {
             .querySelectorAll(".brand-check input")
             .forEach((cb) => (cb.checked = false));
     }
+
+    // Pagination
+    document.querySelectorAll(".page-btn:not(.arrow)").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            document
+                .querySelectorAll(".page-btn:not(.arrow)")
+                .forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+        });
+    });
+
+    // Lazy load images
+    document.querySelectorAll("img").forEach((img) => (img.loading = "lazy"));
+});
+
+// aboute page
+/**
+ * ================================================================
+ *  GHABOS — about.js
+ *  انیمیشن شمارش اعداد در بخش «غباس در اعداد»
+ *  فقط زمانی اجرا می‌شود که کاربر با اسکرول به این بخش برسد
+ * ================================================================
+ */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const statEls = document.querySelectorAll(".stat-card__num[data-count]");
+    if (!statEls.length) return;
+
+    function toFa(str) {
+        return String(str).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
+    }
+
+    function formatNumber(value, decimals) {
+        if (decimals) {
+            return value.toFixed(decimals);
+        }
+        return Math.round(value).toLocaleString("en-US");
+    }
+
+    function animateCount(el) {
+        const target = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimal || "0", 10);
+        const duration = 1400;
+        const start = performance.now();
+
+        function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            // easeOutCubic برای حرکت طبیعی‌تر در پایان شمارش
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = target * eased;
+            el.textContent = toFa(formatNumber(current, decimals));
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                el.textContent = toFa(formatNumber(target, decimals));
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animateCount(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.4 },
+    );
+
+    statEls.forEach((el) => observer.observe(el));
+});
+
+// aboute page
+/**
+ * ================================================================
+ *  GHABOS — about.js
+ *  انیمیشن شمارش اعداد در بخش «غباس در اعداد»
+ *  فقط زمانی اجرا می‌شود که کاربر با اسکرول به این بخش برسد
+ * ================================================================
+ */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const statEls = document.querySelectorAll(".stat-card__num[data-count]");
+    if (!statEls.length) return;
+
+    function toFa(str) {
+        return String(str).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
+    }
+
+    function formatNumber(value, decimals) {
+        if (decimals) {
+            return value.toFixed(decimals);
+        }
+        return Math.round(value).toLocaleString("en-US");
+    }
+
+    function animateCount(el) {
+        const target = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimal || "0", 10);
+        const duration = 1400;
+        const start = performance.now();
+
+        function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            // easeOutCubic برای حرکت طبیعی‌تر در پایان شمارش
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = target * eased;
+            el.textContent = toFa(formatNumber(current, decimals));
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                el.textContent = toFa(formatNumber(target, decimals));
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    animateCount(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.4 },
+    );
+
+    statEls.forEach((el) => observer.observe(el));
 });

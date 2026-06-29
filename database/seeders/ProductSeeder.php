@@ -11,6 +11,20 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(30)->create();
+
+         // محصولات عادی
+    Product::factory(30)->create();
+
+    // محصولات تخفیف‌دار
+    Product::factory(20)->onSale()->create();
+
+    // محصولات پرفروش
+    Product::factory(10)->bestseller()->create();
+
+    // محصولات جدید
+    Product::factory(15)->newArrival()->create();
+
+    // محصولات ناموجود
+    Product::factory(5)->outOfStock()->create();
     }
 }

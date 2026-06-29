@@ -34,7 +34,7 @@
         }
       }
     </script>
-    <script src="{{ asset('front/js/ghabos.js') }}"></script>
+
     @endverbatim
 
     <!-- Performance: warm up connections to external origins early -->
@@ -45,6 +45,7 @@
 
     <link rel="stylesheet" href="{{  asset('front/css/style.css') }}" />
     <link rel="stylesheet" href="{{  asset('front/css/product_style.css') }}" />
+    <link rel="stylesheet" href="{{  asset('front/css/about.css') }}" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
@@ -62,7 +63,7 @@
           <span class="logo__mark"
             ><img loading="eager" decoding="async" fetchpriority="high"
               src="{{ asset('front/images/ghabos-logo.png') }}"
-              alt="لوگو غباس"
+              alt="لوگو قابوس"
               onerror="
                 this.style.display = 'none';
                 this.parentElement.innerHTML = '<i class=\'ti ti-bolt\'></i>';
@@ -113,6 +114,8 @@
           <a href="products.html?filter=hot" class="nav__hot">شگفت‌انگیزها</a>
           <a href="products.html">تازه‌های فروشگاه</a>
           <a href="blog.html">مجله غباس</a>
+          <a href="{{  route('about') }}">درباره ما</a>
+
           <a href="faq.html">پرسش‌های متداول</a>
           <div class="nav__spacer"></div>
           <div class="nav__delivery">
